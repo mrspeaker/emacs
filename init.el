@@ -227,7 +227,7 @@
           (set-face-foreground 'mode-line "#F2804F")
           (run-with-idle-timer 0.1 nil
                                (lambda (fg) (set-face-foreground 'mode-line fg))
-                               orig-fg))))
+                               orig-fg)))
 
 ; Repeatedly use C-spc after C-u spc to cycle through mark ring
 (setq set-mark-command-repeat-pop t)
