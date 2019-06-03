@@ -4,7 +4,7 @@
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
  (filename . "~/notes/ideas.org")
- (front-context-string . "* A thing... on ")
+ (front-context-string . "* Make a thing [")
  (rear-context-string . "hrase i dreamed\n")
  (position . 3807))
 ("tiny"
