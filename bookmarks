@@ -1,0 +1,35 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-capture-last-stored"
+ (filename . "~/notes/ideas.org")
+ (front-context-string . "* A thing... on ")
+ (rear-context-string . "hrase i dreamed\n")
+ (position . 3807))
+("tiny"
+ (filename . "~/Documents/dev/game/tiny/")
+ (front-context-string . ".git\n  -rw-r--r-")
+ (rear-context-string . "96 May  7 10:55 ")
+ (position . 321))
+("digoc"
+ (filename . "/ssh:root@192.241.174.97:/")
+ (front-context-string . "bin\n  drwxr-xr-x")
+ (rear-context-string . "96 Jan  4 11:22 ")
+ (position . 186))
+("Game"
+ (filename . "~/Documents/dev/game/")
+ (front-context-string . "..\n  drwxrwxr-x ")
+ (rear-context-string . "96 Mar 26 10:10 ")
+ (position . 198))
+("Dev"
+ (filename . "~/Documents/dev/")
+ (front-context-string . "..\n  drwxrwxr-x ")
+ (rear-context-string . "96 Apr  2 17:35 ")
+ (position . 194))
+("Work"
+ (filename . "~/Documents/dev/mt/")
+ (front-context-string . "Admin\n  drwxr-xr")
+ (rear-context-string . "96 Mar 27 16:53 ")
+ (position . 263))
+)
