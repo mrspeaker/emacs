@@ -13,8 +13,7 @@
 (global-set-key (kbd "C-;") 'other-window)
 (global-set-key (kbd "M-;") (lambda() (interactive) (other-window -1)))
 
-;(global-set-key (kbd "C-w") 'whole-line-or-region-kill-region)
-;(global-set-key (kbd "M-w") 'whole-line-or-region-kill-ring-save)
+; TODO: is this the way you enable it?
 (whole-line-or-region-global-mode)
 
 ;(define-key flyspell-mode-map (kbd "C-;") nil) ; unbind in flyspell
@@ -98,7 +97,6 @@
 
 
 (require 'sunshine) ; Weather: sunshine-forecast
-(require 'sr-speedbar) ; Fixed frame speedbar
 
 (require 'yasnippet)
 (yas-global-mode 1)
@@ -159,7 +157,6 @@
  '(package-selected-packages
    (quote
     (all-the-icons-dired all-the-icons markdown-mode flycheck slack typescript-mode magit yasnippet-snippets yasnippet expand-region hackernews org-download url-http-ntlm js2-mode)))
- '(sr-speedbar-right-side t)
  '(sunshine-appid "4a4924c8eb9b826d500afed6ea276dce")
  '(sunshine-location "11217,US")
  '(sunshine-show-icons t)
