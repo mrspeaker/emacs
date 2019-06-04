@@ -121,19 +121,22 @@
 (setq org-src-tab-acts-natively t) ; tab in code blocks
 
 ; Org-capture
+(global-set-key (kbd "C-c c") 'org-capture)
+(setq org-default-notes-file "~/notes/organizer.org")
+
 (setq org-capture-templates
-     '(("t" "Personal Task"
-        (file+headline org-default-notes-file "Tasks")
-        "* TODO %?\n  %u\n  %a" :empty-lines 1)
-       ("w" "Work-related Task" entry
-        (file+headline org-default-notes-file "Work")
-        "* TODO %?\n  %u" :empty-lines 1)
-       ("g" "game idea" entry
-        (file "~/notes/gameideas.org")
-        "* %? %u")
-       ("i" "random idea" entry
-        (file "~/notes/ideas.org")
-        "* %? %u")))
+      '(("t" "Personal Task" entry
+         (file+headline org-default-notes-file "Tasks")
+         "* TODO %?\n  %u\n %a")
+        ("w" "Work-related Task" entry
+         (file+headline org-default-notes-file "Work")
+         "* TODO %?\n  %u")
+        ("g" "game idea" entry
+         (file "~/notes/gameideas.org")
+         "* %? %u")
+        ("i" "random idea" entry
+         (file "~/notes/ideas.org")
+         "* %? %u")))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -195,10 +198,6 @@
 
 (put 'narrow-to-region 'disabled nil) ; TODO: why?
 (put 'dired-find-alternate-file 'disabled nil) ; TODO: why?
-
-; Org-capture
-(global-set-key (kbd "C-c c") 'org-capture)
-(setq org-default-notes-file "~/notes/organizer.org")
 
 ;; Move lines up/down with M-p and M-n
 (defun move-line-up ()
