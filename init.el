@@ -127,10 +127,10 @@
 (setq org-capture-templates
       '(("t" "Personal Task" entry
          (file+headline org-default-notes-file "Tasks")
-         "* TODO %?\n  %u\n %a")
+         "* TODO %? %u")
         ("w" "Work-related Task" entry
-         (file+headline org-default-notes-file "Work")
-         "* TODO %?\n  %u")
+         (file+headline "~/notes/mt/work.org" "New")
+         "* TODO %? %u")
         ("g" "game idea" entry
          (file "~/notes/gameideas.org")
          "* %? %u")
