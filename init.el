@@ -158,6 +158,7 @@
  '(hl-paren-colors
    (quote
     ("#B9F" "#B8D" "#B7B" "#B69" "#B57" "#B45" "#B33" "#B11")))
+ '(md4rd-subs-active (quote (emacs gamedev spacex orgmode fortnitebr)))
  '(neo-show-slash-for-folder nil)
  '(org-agenda-files (quote ("~/work.org")))
  '(package-selected-packages
