@@ -1,8 +1,13 @@
-;;;; Emacs Bookmark Format Version 1 ;;;;
+;;;; Emacs Bookmark Format Version 1 ;;;; -*- coding: utf-8-emacs -*- 
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("org-capture-last-stored"
+(("MakingMachine"
+ (filename . "~/Documents/dev/audio/MakingMachine/")
+ (front-context-string . ".git\n  -rw-r--r-")
+ (rear-context-string . " Jun  2 11:53  ")
+ (position . 269))
+("org-capture-last-stored"
  (filename . "~/notes/ideas.org")
  (front-context-string . "* Make a thing [")
  (rear-context-string . "hrase i dreamed\n")
