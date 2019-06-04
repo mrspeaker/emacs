@@ -13,9 +13,6 @@
 (global-set-key (kbd "C-;") 'other-window)
 (global-set-key (kbd "M-;") (lambda() (interactive) (other-window -1)))
 
-; TODO: is this the way you enable it?
-(whole-line-or-region-global-mode)
-
 ;(define-key flyspell-mode-map (kbd "C-;") nil) ; unbind in flyspell
 
 (global-set-key (kbd "M-\"") 'insert-pair) ;Wrap quotes
@@ -94,7 +91,12 @@
 ;(add-hook 'js2-mode-hook 'flow-minor-enable-automatically)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
-
+(add-hook 'after-init-hook
+          (lambda ()
+            (progn
+              (whole-line-or-region-global-mode)
+              (when (fboundp 'auto-dim-other-buffers-mode)
+                (auto-dim-other-buffers-mode t)))))
 
 (require 'sunshine) ; Weather: sunshine-forecast
 
@@ -143,6 +145,7 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(auto-dim-other-buffers-mode t)
  '(custom-enabled-themes (quote (sanityinc-tomorrow-night)))
  '(custom-safe-themes
    (quote
@@ -156,7 +159,7 @@
  '(org-agenda-files (quote ("~/work.org")))
  '(package-selected-packages
    (quote
-    (all-the-icons-dired all-the-icons markdown-mode flycheck slack typescript-mode magit yasnippet-snippets yasnippet expand-region hackernews org-download url-http-ntlm js2-mode)))
+    (auto-dim-other-buffers all-the-icons-dired all-the-icons markdown-mode flycheck slack typescript-mode magit yasnippet-snippets yasnippet expand-region hackernews org-download url-http-ntlm js2-mode)))
  '(sunshine-appid "4a4924c8eb9b826d500afed6ea276dce")
  '(sunshine-location "11217,US")
  '(sunshine-show-icons t)
@@ -167,7 +170,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Liberation Mono" :foundry "1ASC" :slant normal :weight normal :height 113 :width normal))))
+ '(default ((t (:family "Liberation Mono" :foundry "1ASC" :slant normal :weight normal :height 120 :width normal))))
+ '(auto-dim-other-buffers-face ((t (:background "#111"))))
  '(sunshine-forecast-headline-face ((t (:foreground "navajo white" :height 1.1)))))
 
 ; Line-wrap icons on right side only.
