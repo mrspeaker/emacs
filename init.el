@@ -159,7 +159,7 @@
  '(org-agenda-files (quote ("~/work.org")))
  '(package-selected-packages
    (quote
-    (auto-dim-other-buffers all-the-icons-dired all-the-icons markdown-mode flycheck slack typescript-mode magit yasnippet-snippets yasnippet expand-region hackernews org-download url-http-ntlm js2-mode)))
+    (md4rd auto-dim-other-buffers all-the-icons-dired all-the-icons markdown-mode flycheck slack typescript-mode magit yasnippet-snippets yasnippet expand-region hackernews org-download url-http-ntlm js2-mode)))
  '(sunshine-appid "4a4924c8eb9b826d500afed6ea276dce")
  '(sunshine-location "11217,US")
  '(sunshine-show-icons t)
@@ -218,6 +218,9 @@
 
 (global-set-key (kbd "M-p")  'move-line-up)
 (global-set-key (kbd "M-n")  'move-line-down)
+
+; Reddit Mode
+(setq md4rd-subs-active '(gamedev emacs orgmode spacex))
 
 ;(set-background-color "#1f1915")
 
