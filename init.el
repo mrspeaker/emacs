@@ -12,6 +12,9 @@
 ; Keybinds
 (global-set-key (kbd "C-;") 'other-window)
 (global-set-key (kbd "M-;") (lambda() (interactive) (other-window -1)))
+(global-set-key [C-tab] 'next-buffer) ; TODO: are these any good?
+(global-set-key [C-iso-lefttab] 'previous-buffer) ; mabye find more natural ones
+
 
 ;(define-key flyspell-mode-map (kbd "C-;") nil) ; unbind in flyspell
 
