@@ -159,6 +159,7 @@
  '(custom-safe-themes
    (quote
     ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "e68cf26c0e2957f19cd8e857d9546b17a32ded41caa00a4f94c8276b2c19cb2b" "217ad4914762a1ff7dfb7dc55df85e37c11755fb2bb0c8a5df272e425bf669d9" "f87f74ecd2ff6dc433fb4af4e76d19342ea4c50e4cd6c265b712083609c9b567" default)))
+ '(desktop-save (quote ask-if-new))
  '(flycheck-typescript-tslint-config "tsconfig.json")
  '(flycheck-typescript-tslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/tslint")
  '(hl-paren-colors
