@@ -134,6 +134,9 @@
         ("w" "Work-related Task" entry
          (file+headline "~/notes/mt/work.org" "New")
          "* TODO %? %u")
+        ("r" "Read later" entry
+         (file+headline org-default-notes-file "Read Later")
+         "* TODO %?\n%u - %c")
         ("g" "game idea" entry
          (file "~/notes/gameideas.org")
          "* %? %u")
