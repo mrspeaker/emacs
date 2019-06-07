@@ -2,16 +2,31 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("MakingMachine"
+(("MrSpeaker Blog"
+ (filename . "/ftp:mrspeak@ftp.mrspeaker.net:/www/")
+ (front-context-string . ".htaccess\n  drwx")
+ (rear-context-string . " Mar 15 07:14  ")
+ (position . 239))
+("MakingEngine"
+ (filename . "~/Documents/dev/mt/MakingEngine/")
+ (front-context-string . "..\n  drwxr-xr-x ")
+ (rear-context-string . "96 May 21 17:33 ")
+ (position . 216))
+("org-refile-last-stored"
+ (filename . "~/notes/mt/work.org")
+ (front-context-string . "** TODO Re-show ")
+ (rear-context-string . "2019-06-04 Tue]\n")
+ (position . 1508))
+("MakingMachine"
  (filename . "~/Documents/dev/audio/MakingMachine/")
  (front-context-string . ".git\n  -rw-r--r-")
  (rear-context-string . " Jun  2 11:53  ")
  (position . 269))
 ("org-capture-last-stored"
- (filename . "~/notes/ideas.org")
- (front-context-string . "* Make a thing [")
- (rear-context-string . "hrase i dreamed\n")
- (position . 3807))
+ (filename . "~/notes/mt/work.org")
+ (front-context-string . "** TODO Re-show ")
+ (rear-context-string . "2019-06-04 Tue]\n")
+ (position . 97))
 ("tiny"
  (filename . "~/Documents/dev/game/tiny/")
  (front-context-string . ".git\n  -rw-r--r-")

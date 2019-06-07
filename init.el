@@ -168,6 +168,8 @@
  '(md4rd-subs-active (quote (emacs gamedev spacex orgmode fortnitebr)))
  '(neo-show-slash-for-folder nil)
  '(org-agenda-files (quote ("~/work.org")))
+ '(org-startup-indented t)
+ '(org-startup-with-inline-images t)
  '(package-selected-packages
    (quote
     (md4rd auto-dim-other-buffers all-the-icons-dired all-the-icons markdown-mode flycheck slack typescript-mode magit yasnippet-snippets yasnippet expand-region hackernews org-download url-http-ntlm js2-mode)))
@@ -196,7 +198,9 @@
 (scroll-bar-mode -1)
 
 (desktop-save-mode 1) ; Save layout/open files
-(delete-selection-mode 1) ; Overwrite selection
+;; note: this didn't save layout until I customised: '(desktop-save (quote ask-if-new))
+
+(delete-selection-mode 1) ; Overwrite current text selection
 
 (global-set-key (kbd "<mouse-3>") 'mouse-major-mode-menu)
 (global-set-key (kbd "<C-mouse-3>") 'mouse-popup-menubar)
