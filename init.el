@@ -58,8 +58,6 @@
 (setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
 
 ;;  Modes
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
 ;; Ido
 (setq ido-enable-flex-matching t)
@@ -74,6 +72,9 @@
 ;; (add-hook 'prog-mode-hook 'linum-mode)
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
 ;(eval-after-load 'flycheck
 ;  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
@@ -81,6 +82,40 @@
 (setq flycheck-javascript-eslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/eslint")
 ;(setq flycheck-javascript-tslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/tslint")
 
+; TIDE
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; (add-hook 'before-save-hook 'tide-format-before-save) - oh nope - bad formating.
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "tsx" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "jsx" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
+
+;; (flycheck-add-mode 'javascript-eslint 'web-mode) - check this - no such thing?
+; (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
+; (flycheck-add-mode 'typescript-tslint 'web-mode)
+(add-hook 'js2-mode-hook (lambda ()
+                           (tern-mode)
+                           (company-mode)))
 
 (require 'prettier-js)
 (setq prettier-js-command "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/prettier")
@@ -155,6 +190,11 @@
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(auto-dim-other-buffers-mode t)
+ '(company-backends
+   (quote
+    (company-tern company-tide company-bbdb company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
+                  (company-dabbrev-code company-gtags company-etags company-keywords)
+                  company-oddmuse company-dabbrev)))
  '(custom-enabled-themes (quote (sanityinc-tomorrow-night)))
  '(custom-safe-themes
    (quote
@@ -165,14 +205,14 @@
  '(hl-paren-colors
    (quote
     ("#B9F" "#B8D" "#B7B" "#B69" "#B57" "#B45" "#B33" "#B11")))
- '(md4rd-subs-active (quote (emacs gamedev spacex orgmode fortnitebr)))
+ '(md4rd-subs-active (quote (emacs gamedev spacex orgmode fortnitebr)) t)
  '(neo-show-slash-for-folder nil)
  '(org-agenda-files (quote ("~/work.org")))
  '(org-startup-indented t)
  '(org-startup-with-inline-images t)
  '(package-selected-packages
    (quote
-    (md4rd auto-dim-other-buffers all-the-icons-dired all-the-icons markdown-mode flycheck slack typescript-mode magit yasnippet-snippets yasnippet expand-region hackernews org-download url-http-ntlm js2-mode)))
+    (company-tern tern company tide md4rd auto-dim-other-buffers all-the-icons-dired all-the-icons markdown-mode flycheck slack typescript-mode magit yasnippet-snippets yasnippet expand-region hackernews org-download url-http-ntlm js2-mode)))
  '(sunshine-appid "4a4924c8eb9b826d500afed6ea276dce")
  '(sunshine-location "11217,US")
  '(sunshine-show-icons t)
