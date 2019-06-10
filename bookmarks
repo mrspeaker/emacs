@@ -13,20 +13,20 @@
  (rear-context-string . "96 May 21 17:33 ")
  (position . 216))
 ("org-refile-last-stored"
- (filename . "~/notes/mt/work.org")
- (front-context-string . "** TODO Re-show ")
- (rear-context-string . "2019-06-04 Tue]\n")
- (position . 1508))
+ (filename . "~/notes/organizer.org")
+ (front-context-string . "** TODO check th")
+ (rear-context-string . "6 Thu]\n\n* Emacs\n")
+ (position . 753))
 ("MakingMachine"
  (filename . "~/Documents/dev/audio/MakingMachine/")
  (front-context-string . ".git\n  -rw-r--r-")
  (rear-context-string . " Jun  2 11:53  ")
  (position . 269))
 ("org-capture-last-stored"
- (filename . "~/notes/mt/work.org")
- (front-context-string . "** TODO Re-show ")
- (rear-context-string . "2019-06-04 Tue]\n")
- (position . 97))
+ (filename . "~/notes/organizer.org")
+ (front-context-string . "** TODO Web Asse")
+ (rear-context-string . "tem?id=20116693\n")
+ (position . 1006))
 ("tiny"
  (filename . "~/Documents/dev/game/tiny/")
  (front-context-string . ".git\n  -rw-r--r-")
