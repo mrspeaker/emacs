@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("MrSpeaker Blog"
+(("thember"
+ (filename . "~/Documents/dev/game/thember/")
+ (front-context-string . "..\n  -rw-rw-r-- ")
+ (rear-context-string . "96 Jun  8 09:12 ")
+ (position . 206))
+("MrSpeaker Blog"
  (filename . "/ftp:mrspeak@ftp.mrspeaker.net:/www/")
  (front-context-string . ".htaccess\n  drwx")
  (rear-context-string . " Mar 15 07:14  ")
@@ -23,10 +28,10 @@
  (rear-context-string . " Jun  2 11:53  ")
  (position . 269))
 ("org-capture-last-stored"
- (filename . "~/notes/organizer.org")
- (front-context-string . "** TODO Web Asse")
- (rear-context-string . "tem?id=20116693\n")
- (position . 1006))
+ (filename . "~/notes/mt/work.org")
+ (front-context-string . "** TODO Replace ")
+ (rear-context-string . "2019-06-09 Sun]\n")
+ (position . 521))
 ("tiny"
  (filename . "~/Documents/dev/game/tiny/")
  (front-context-string . ".git\n  -rw-r--r-")
