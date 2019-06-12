@@ -140,6 +140,10 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+; erc
+(setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
+(setq erc-lurker-threshold-time 3600)
+
 ; Org mode
 (setq org-todo-keywords
       '((sequence "TODO" "WIP" "DONE")))
