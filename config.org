@@ -107,14 +107,16 @@ Quiet, please! No dinging!
 #+END_SRC
 
 * Org mode
+Settings for Org mode
 
-** Basic setup/todos
+** Basic setup
+*** Don't smash frames
 #+BEGIN_SRC emacs-lisp
-
-;; Don't smash frames
 (setq org-agenda-window-setup 'current-window)
+#+END_SRC
 
-;; Babel exec code
+*** Babel exec code
+#+BEGIN_SRC emacs-lisp
 (org-babel-do-load-languages
  'org-babel-load-languages
  '(
@@ -123,11 +125,12 @@ Quiet, please! No dinging!
 (setq org-src-fontify-natively t) ; syntax highlight
 (setq org-confirm-babel-evaluate nil) ; don't ask to exec
 (setq org-src-tab-acts-natively t) ; tab in code blocks
+#+END_SRC
 
-; Org mode
+*** Set TODO keywords
+#+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords
       '((sequence "TODO" "WIP" "DONE")))
-
 #+END_SRC
 
 ** Org-capture
@@ -151,6 +154,4 @@ Quiet, please! No dinging!
         ("i" "random idea" entry
          (file "~/notes/ideas.org")
          "* %? %u")))
-
-
 #+END_SRC
