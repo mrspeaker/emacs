@@ -1,0 +1,156 @@
+#+STARTUP: overview
+#+TITLE: Mr Speaker's Emacs
+#+CREATOR: Mr Speaker
+#+LANGUAGE: en
+#+OPTIONS: num:nil
+#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+
+* Overview
+=init.el= but in an org file. Stolen from [[https://github.com/daedreth/UncleDavesEmacs][Uncle Dave's Emacs]].
+
+* Basic Interface Settings
+These are setting that do not depend on packages and are built-in enhancements to the UI.
+
+** Look n feel
+*** Remove startup screen
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+#+END_SRC
+
+*** Set menus and scrollbars
+Choose to set or hide by changing =-1= to =1=.
+#+BEGIN_SRC emacs-lisp
+(tool-bar-mode -1)
+(menu-bar-mode 1)
+(scroll-bar-mode -1)
+#+END_SRC
+
+*** Disable bell
+Quiet, please! No dinging!
+#+BEGIN_SRC emacs-lisp
+  (setq visible-bell nil
+        ring-bell-function 'flash-mode-line)
+  (defun flash-mode-line ()
+    ;(invert-face 'mode-line)
+    ;(run-with-timer 0.1 nil #'invert-face 'mode-line))
+    (set-face-foreground 'mode-line "#F2804F")
+    (let ((orig-fg (face-foreground 'mode-line)))
+      (run-with-idle-timer 0.1 nil
+                           (lambda (fg) (set-face-foreground 'mode-line fg))
+                           orig-fg)))
+#+END_SRC
+
+*** Line-wrap icons on right side only.
+#+BEGIN_SRC emacs-lisp
+(setf (cdr (assq 'continuation fringe-indicator-alist))
+			'(nil right-curly-arrow)
+			)
+#+END_SRC
+
+*** Set UTF-8 encoding
+#+BEGIN_SRC emacs-lisp 
+  (setq locale-coding-system 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (set-selection-coding-system 'utf-8)
+  (prefer-coding-system 'utf-8)
+#+END_SRC
+
+** Unsorted
+#+BEGIN_SRC emacs-lisp
+
+(desktop-save-mode 1) ; Save layout/open files
+;; note: this didn't save layout until I customised: '(desktop-save (quote ask-if-new))
+
+(delete-selection-mode 1) ; Overwrite current text selection
+
+(global-set-key (kbd "<mouse-3>") 'mouse-major-mode-menu)
+(global-set-key (kbd "<C-mouse-3>") 'mouse-popup-menubar)
+
+(require 'expand-region)
+(global-set-key (kbd "C-'") 'er/expand-region)
+
+(put 'narrow-to-region 'disabled nil) ; TODO: why?
+(put 'dired-find-alternate-file 'disabled nil) ; TODO: why?
+
+;; Move lines up/down with M-p and M-n
+(defun move-line-up ()
+  "Move up the current line."
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
+
+(defun move-line-down ()
+  "Move down the current line."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(global-set-key (kbd "M-p")  'move-line-up)
+(global-set-key (kbd "M-n")  'move-line-down)
+
+; Reddit Mode
+(setq md4rd-subs-active '(gamedev emacs orgmode spacex))
+
+; Repeatedly use C-spc after C-u spc to cycle through mark ring
+(setq set-mark-command-repeat-pop t)
+(global-set-key [remap upcase-region] 'ignore)  ; because it triggers whenever i typo c-x u
+(global-set-key [remap org-cycle-agenda-files] 'ignore) ; tmp - same keybind as expand rgion above
+; (global-set-key [remap flyspell-autocorrect-previous-word] 'ignore)
+
+;;; ; tmp - same keybind as expand rgion above
+
+(message "Done.")
+#+END_SRC
+
+* Org mode
+
+** Basic setup/todos
+#+BEGIN_SRC emacs-lisp
+
+;; Don't smash frames
+(setq org-agenda-window-setup 'current-window)
+
+;; Babel exec code
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (js . t)
+   ))
+(setq org-src-fontify-natively t) ; syntax highlight
+(setq org-confirm-babel-evaluate nil) ; don't ask to exec
+(setq org-src-tab-acts-natively t) ; tab in code blocks
+
+; Org mode
+(setq org-todo-keywords
+      '((sequence "TODO" "WIP" "DONE")))
+
+#+END_SRC
+
+** Org-capture
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c c") 'org-capture)
+(setq org-default-notes-file "~/notes/organizer.org")
+
+(setq org-capture-templates
+      '(("t" "Personal Task" entry
+         (file+headline org-default-notes-file "Tasks")
+         "* TODO %? %u")
+        ("w" "Work-related Task" entry
+         (file+headline "~/notes/mt/work.org" "New")
+         "* TODO %? %u")
+        ("r" "Read later" entry
+         (file+headline org-default-notes-file "Read Later")
+         "* TODO %?\n%u - %c")
+        ("g" "game idea" entry
+         (file "~/notes/gameideas.org")
+         "* %? %u")
+        ("i" "random idea" entry
+         (file "~/notes/ideas.org")
+         "* %? %u")))
+
+
+#+END_SRC
