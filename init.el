@@ -1,153 +1,24 @@
+;;; This is all kinds of necessary
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(setq package-enable-at-startup nil)
+
+(setq package-archives '(("ELPA"  . "http://tromey.com/elpa/")
+			 ("gnu"   . "http://elpa.gnu.org/packages/")
+			 ("melpa" . "https://melpa.org/packages/")
+			 ("org"   . "https://orgmode.org/elpa/")))
 (package-initialize)
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(add-to-list 'load-path "~/.emacs.d/themes/")
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+;;; Bootstrapping use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-(require 're-builder)
-(setq reb-re-syntax 'string)
-
-; Keybinds
-(global-set-key (kbd "C-;") 'other-window)
-(global-set-key (kbd "M-;") (lambda() (interactive) (other-window -1)))
-(global-set-key (kbd "M-[") 'previous-buffer)
-(global-set-key (kbd "M-]") 'next-buffer)
-
-;(define-key flyspell-mode-map (kbd "C-;") nil) ; unbind in flyspell
-
-(global-set-key (kbd "M-\"") 'insert-pair) ;Wrap quotes
-(global-set-key (kbd "C-x g") 'magit-status)
-;(define-key org-mode-map "M-q" 'toggle-truncate-lines)
-(global-set-key [remap dabbrev-expand] 'hippie-expand)
-
-; Tabs. TODO: which of these does stuff?!
-(setq-default indent-tabs-mode nil)
-(setq-default js2-tab-width 2)
-(setq-default tab-width 2)
-(setq-default js2-basic-offset 2)
-(setq js-indent-level 2)
-
-; Font
-(setq-default line-spacing 0.12)
-
-; Dired
-(setq dired-dwim-target t)
-(add-hook 'dired-mode-hook
-          (lambda()
-            (dired-hide-details-mode))) ; Hide dired detailsn
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-
-; neotree
-(add-to-list 'load-path "~/.emacs.d/lisp/emacs-neotree")
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-(setq neo-smart-open t)
-
-; y/n instead of yes/no
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;;; backup/autosave
-(defvar backup-dir (expand-file-name "~/.emacs.d/backups/"))
-(defvar autosave-dir (expand-file-name "~/.emacs.d/autosave/"))
-(setq backup-directory-alist (list (cons ".*" backup-dir)))
-(setq auto-save-list-file-prefix autosave-dir)
-(setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
-
-;;  Modes
-
-;; Ido
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
-(setq ido-create-new-buffer 'always)
-(setq ido-use-filename-at-point 'guess)
-
-;; Hooks
-(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
-
-;; (add-hook 'prog-mode-hook 'linum-mode)
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
-
-;(eval-after-load 'flycheck
-;  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
-
-(setq flycheck-javascript-eslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/eslint")
-;(setq flycheck-javascript-tslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/tslint")
-
-; TIDE
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1))
-
-;; aligns annotation to the right hand side
-(setq company-tooltip-align-annotations t)
-
-;; (add-hook 'before-save-hook 'tide-format-before-save) - oh nope - bad formating.
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
-
-(add-hook 'web-mode-hook
-          (lambda ()
-            (when (string-equal "tsx" (file-name-extension buffer-file-name))
-              (setup-tide-mode))))
-(add-hook 'web-mode-hook
-          (lambda ()
-            (when (string-equal "jsx" (file-name-extension buffer-file-name))
-              (setup-tide-mode))))
-
-;; (flycheck-add-mode 'javascript-eslint 'web-mode) - check this - no such thing?
-; (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
-; (flycheck-add-mode 'typescript-tslint 'web-mode)
-(add-hook 'js2-mode-hook (lambda ()
-                           (tern-mode)
-                           (company-mode)))
-
-(require 'prettier-js)
-(setq prettier-js-command "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/prettier")
-(add-hook 'js2-mode-hook (lambda()
-                           (prettier-js-mode)
-                           ))
-(add-hook 'typescript-mode-hook (lambda()
-                           (prettier-js-mode)
-                           ))
-;(add-hook 'web-mode-hook 'prettier-js-mode)
-;(add-hook 'js2-mode-hook 'flow-minor-enable-automatically)
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'after-init-hook
-          (lambda ()
-            (progn
-              (whole-line-or-region-global-mode)
-              (when (fboundp 'auto-dim-other-buffers-mode)
-                (auto-dim-other-buffers-mode t)))))
-
-(require 'sunshine) ; Weather: sunshine-forecast
-
-(require 'yasnippet)
-(yas-global-mode 1)
-
-; erc
-(setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
-(setq erc-lurker-threshold-time 3600)
-
-; TODO: In the process of moving init.el to an org file
+; Load the actual init.el from an org file
 (when (file-readable-p "~/.emacs.d/config.org")
   (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
 
+; Custom vars not stored in config.
+; TODO: package loading etc should go to config
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -163,8 +34,8 @@
  '(company-backends
    (quote
     (company-tern company-tide company-bbdb company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
-                  (company-dabbrev-code company-gtags company-etags company-keywords)
-                  company-oddmuse company-dabbrev)))
+		  (company-dabbrev-code company-gtags company-etags company-keywords)
+		  company-oddmuse company-dabbrev)))
  '(css-indent-offset 2)
  '(custom-enabled-themes (quote (gruvbox-light-hard)))
  '(custom-safe-themes
