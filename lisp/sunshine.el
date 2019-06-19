@@ -156,7 +156,8 @@ Requires your OpenWeatherMap APPID."
           "&APPID=" appid
           "&mode=json&units="
           (url-encode-url (symbol-name units))
-          "&cnt=5"))
+                                        ; "&cnt=5"))
+          ))
 
 (defun sunshine-get-forecast (location units display-type appid)
   "Get forecast data from OpenWeatherMap's API.
@@ -169,6 +170,8 @@ Its value may be 'full or 'quick.
 
 Requires your OpenWeatherMap APPID."
   (let* ((url (sunshine-make-url location units appid)))
+    (progn
+      (message url)
     (if (sunshine-forecast-cache-expired url)
         (url-retrieve url 'sunshine-retrieved (list display-type) t)
       ;; Cache is not expired; pull out the cached data.
@@ -178,7 +181,7 @@ Requires your OpenWeatherMap APPID."
         (set-buffer-multibyte t)
         (insert-file-contents (url-cache-create-filename url))
         ;; Use a fake status value; we don't use it anyway.
-        (sunshine-retrieved "status" display-type)))))
+        (sunshine-retrieved "status" display-type))))))
 
 (defun sunshine-retrieved (status display-type)
   "Process the retrieved data; receives STATUS, which we discard.

@@ -6,6 +6,7 @@
 			 ("gnu"   . "http://elpa.gnu.org/packages/")
 			 ("melpa" . "https://melpa.org/packages/")
 			 ("org"   . "https://orgmode.org/elpa/")))
+
 (package-initialize)
 
 ;;; Bootstrapping use-package
@@ -18,7 +19,8 @@
   (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
 
 ; Custom vars not stored in config.
-; TODO: package loading etc should go to config
+					; TODO: package loading etc should go to config
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -29,7 +31,6 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(auto-dim-other-buffers-mode t)
  '(beacon-color "#cc6666")
  '(company-backends
    (quote
@@ -50,14 +51,14 @@
  '(hl-paren-colors
    (quote
     ("#B9F" "#B8D" "#B7B" "#B69" "#B57" "#B45" "#B33" "#B11")))
- '(md4rd-subs-active (quote (emacs gamedev spacex orgmode fortnitebr)))
+ '(md4rd-subs-active (quote (emacs gamedev spacex orgmode fortnitebr)) t)
  '(neo-show-slash-for-folder nil)
  '(org-agenda-files (quote ("~/work.org")))
  '(org-startup-indented t)
  '(org-startup-with-inline-images t)
  '(package-selected-packages
    (quote
-    (php-mode gruvbox-theme company-tern tern company tide md4rd auto-dim-other-buffers all-the-icons-dired all-the-icons markdown-mode flycheck slack typescript-mode magit yasnippet-snippets yasnippet expand-region hackernews org-download url-http-ntlm js2-mode)))
+    (yasnippet-snippets whole-line-or-region web-mode use-package url-http-ntlm tide slack php-mode org-download md4rd markdown-mode magit js2-mode hackernews gruvbox-theme expand-region company-tern auto-dim-other-buffers all-the-icons-dired)))
  '(sunshine-appid "4a4924c8eb9b826d500afed6ea276dce")
  '(sunshine-location "11217,US")
  '(sunshine-show-icons t)
