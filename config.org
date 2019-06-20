@@ -191,6 +191,8 @@ This turns on the clock globally.
   (put 'narrow-to-region 'disabled nil) ; TODO: why?
   ; (global-set-key [remap flyspell-autocorrect-previous-word] 'ignore)
 
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier nil)
 #+END_SRC
 
 ** Customizations
