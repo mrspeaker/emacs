@@ -1,4 +1,3 @@
-;;; This is all kinds of necessary
 (require 'package)
 (setq package-enable-at-startup nil)
 
@@ -35,8 +34,8 @@
  '(company-backends
    (quote
     (company-tern company-tide company-bbdb company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
-		  (company-dabbrev-code company-gtags company-etags company-keywords)
-		  company-oddmuse company-dabbrev)))
+                  (company-dabbrev-code company-gtags company-etags company-keywords)
+                  company-oddmuse company-dabbrev)))
  '(css-indent-offset 2)
  '(custom-enabled-themes (quote (gruvbox-light-hard)))
  '(custom-safe-themes
@@ -51,14 +50,16 @@
  '(hl-paren-colors
    (quote
     ("#B9F" "#B8D" "#B7B" "#B69" "#B57" "#B45" "#B33" "#B11")))
- '(md4rd-subs-active (quote (emacs gamedev spacex orgmode fortnitebr)) t)
+ '(md4rd-subs-active
+   (quote
+    (emacs gamedev spacex orgmode fortnitebr javascript)))
  '(neo-show-slash-for-folder nil)
  '(org-agenda-files (quote ("~/work.org")))
  '(org-startup-indented t)
  '(org-startup-with-inline-images t)
  '(package-selected-packages
    (quote
-    (yasnippet-snippets whole-line-or-region web-mode use-package url-http-ntlm tide slack php-mode org-download md4rd markdown-mode magit js2-mode hackernews gruvbox-theme expand-region company-tern auto-dim-other-buffers all-the-icons-dired)))
+    (yasnippet-snippets use-package url-http-ntlm slack org-download markdown-mode magit gruvbox-theme expand-region company-tern auto-dim-other-buffers all-the-icons-dired)))
  '(sunshine-appid "4a4924c8eb9b826d500afed6ea276dce")
  '(sunshine-location "11217,US")
  '(sunshine-show-icons t)

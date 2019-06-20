@@ -30,13 +30,6 @@ Then test this actually works on a new machine.
   (setq-default js2-basic-offset 2)
   (setq js-indent-level 2)
 
-  ; neotree
-  (add-to-list 'load-path "~/.emacs.d/lisp/emacs-neotree")
-  (require 'neotree)
-  (global-set-key [f8] 'neotree-toggle)
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  (setq neo-smart-open t)
-
   ;;; backup/autosave
   (defvar backup-dir (expand-file-name "~/.emacs.d/backups/"))
   (defvar autosave-dir (expand-file-name "~/.emacs.d/autosave/"))
@@ -145,6 +138,13 @@ Quiet, please! No dinging!
 			)
 #+END_SRC
 
+*** Whole line or region
+#+BEGIN_SRC emacs-lisp
+  (use-package whole-line-or-region
+    :ensure t
+    :init
+    (add-hook 'after-init-hook 'whole-line-or-region-global-mode))
+#+END_SRC
 *** Set UTF-8 encoding
 #+BEGIN_SRC emacs-lisp 
   (setq locale-coding-system 'utf-8)
@@ -216,48 +216,94 @@ This turns on the clock globally.
 
 #+END_SRC
 
-* Web programming
-Unsorted tings about web programming
+* Enhancements
+** Neotree
 #+BEGIN_SRC emacs-lisp
-  ;; (add-hook 'prog-mode-hook 'linum-mode)
+; TODO: fork repo, apply my patches, use that.
+(use-package neotree
+  :ensure t
+  :init
+  (global-set-key [f8] 'neotree-toggle)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  (setq neo-smart-open t)
+  (setq neo-show-slash-for-folder nil))
+#+END_SRC
+
+* Programming
+** Line numbering
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package linum-relative
+  ;;   :ensure t
+  ;;   :config
+  ;;     (setq linum-relative-current-symbol "")
+  ;;     (add-hook 'prog-mode-hook 'linum-relative-mode))
+
+  ; (add-hook 'prog-mode-hook 'linum-mode)
+#+END_SRC
+
+** Web & JS Mode
+*** JS2Mode
+#+BEGIN_SRC emacs-lisp
+(use-package js2-mode 
+  :ensure t
+  :init (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+#+END_SRC
+
+*** Web mode
+#+BEGIN_SRC emacs-lisp
   (use-package web-mode
     :ensure t
     :init
       (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-      (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
       (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode)))
 
+#+END_SRC
+
+*** Typescript
+#+BEGIN_SRC emacs-lisp
+    ; TIDE
+    (defun setup-tide-mode ()
+      (interactive)
+      (tide-setup)
+      (flycheck-mode +1)
+      (setq flycheck-check-syntax-automatically '(save mode-enabled))
+      (eldoc-mode +1)
+      (tide-hl-identifier-mode +1)
+      (company-mode +1))
+
+
+  (use-package tide
+    :ensure t
+    :init 
+    ; aligns annotation to the right hand side
+    (setq company-tooltip-align-annotations t)
+    ;; (add-hook 'before-save-hook 'tide-format-before-save) - oh nope - bad formating.
+    (add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+    (add-hook 'web-mode-hook
+              (lambda ()
+                (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                  (setup-tide-mode))))
+    (add-hook 'web-mode-hook
+              (lambda ()
+                (when (string-equal "jsx" (file-name-extension buffer-file-name))
+                  (setup-tide-mode)))))
+#+END_SRC
+
+** Other modes
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode :ensure t)
+(use-package php-mode :ensure t)
+#+END_SRC
+
+** Unsorted tings about web programming
+#+BEGIN_SRC emacs-lisp
   ;(eval-after-load 'flycheck
   ;  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
 
   (setq flycheck-javascript-eslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/eslint")
   ;(setq flycheck-javascript-tslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/tslint")
-
-  ; TIDE
-  (defun setup-tide-mode ()
-    (interactive)
-    (tide-setup)
-    (flycheck-mode +1)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (eldoc-mode +1)
-    (tide-hl-identifier-mode +1)
-    (company-mode +1))
-
-  ;; aligns annotation to the right hand side
-  (setq company-tooltip-align-annotations t)
-
-  ;; (add-hook 'before-save-hook 'tide-format-before-save) - oh nope - bad formating.
-  (add-hook 'typescript-mode-hook #'setup-tide-mode)
-
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (when (string-equal "tsx" (file-name-extension buffer-file-name))
-                (setup-tide-mode))))
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (when (string-equal "jsx" (file-name-extension buffer-file-name))
-                (setup-tide-mode))))
 
   ;; ;; (flycheck-add-mode 'javascript-eslint 'web-mode) - check this - no such thing?
   ; (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
@@ -265,6 +311,8 @@ Unsorted tings about web programming
   (add-hook 'js2-mode-hook (lambda ()
                              (tern-mode)
                              (company-mode)))
+
+; todo: figure out to make this work: (no-port-file).... (add-hook 'after-init-hook (lambda () (setq tern-command (append tern-command '("--no-port-file")))))
 
   (use-package prettier-js
     :ensure t
@@ -275,10 +323,8 @@ Unsorted tings about web programming
         (add-hook 'web-mode-hook 'prettier-js-mode))
 
   (add-hook 'after-init-hook #'global-flycheck-mode)
-  (add-hook 'after-init-hook
-            (lambda ()
-              (progn
-                (whole-line-or-region-global-mode))))
+;  (add-hook 'after-init-hook
+ ;           (lambda ()
                ; (when (fboundp 'auto-dim-other-buffers-mode)
                 ;  (auto-dim-other-buffers-mode t))))
 
@@ -304,6 +350,13 @@ Settings for dired
 Settings for Org mode
 
 ** Basic setup
+*** Misc customisations
+#+BEGIN_SRC emacs-lisp
+ (setq org-agenda-files '("~/work.org"))
+ (setq org-startup-indented t)
+ (setq org-startup-with-inline-images t)
+#+END_SRC
+
 *** Don't smash frames
 #+BEGIN_SRC emacs-lisp
 (setq org-agenda-window-setup 'current-window)
@@ -350,11 +403,24 @@ Settings for Org mode
          "* %? %u")))
 #+END_SRC
 
-* Web sites
-
+* Apps
 #+BEGIN_SRC emacs-lisp
-; Reddit Mode
-(setq md4rd-subs-active '(gamedev emacs orgmode spacex))
-  
+(use-package magit :ensure t)
+#+END_SRC
+
+* Web sites
+** Hacker News
+#+BEGIN_SRC emacs-lisp
+(use-package hackernews
+  :ensure t)
+#+END_SRC
+
+** Reddit Mode
+#+BEGIN_SRC emacs-lisp
+(use-package md4rd
+  :ensure t
+  :init 
+  (setq md4rd-subs-active '(emacs gamedev spacex orgmode fortnitebr)))
+; '(md4rd-subs-active (quote (emacs gamedev spacex orgmode fortnitebr)) t)
 #+END_SRC
 
