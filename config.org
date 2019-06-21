@@ -191,6 +191,8 @@ This turns on the clock globally.
   (put 'narrow-to-region 'disabled nil) ; TODO: why?
   ; (global-set-key [remap flyspell-autocorrect-previous-word] 'ignore)
 
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier nil)
 #+END_SRC
 
 ** Customizations
@@ -217,6 +219,17 @@ This turns on the clock globally.
 #+END_SRC
 
 * Enhancements
+** All the icons
+#+BEGIN_SRC emacs-lisp
+; Note: need to run M-x all-the-icons-install-fonts after use-pacakge...
+; is there a way to do this automagically?
+(use-package all-the-icons :ensure t)
+(use-package all-the-icons-dired
+  :ensure t
+  :init
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+#+END_SRC
+
 ** Neotree
 #+BEGIN_SRC emacs-lisp
 ; TODO: fork repo, apply my patches, use that.
@@ -227,6 +240,11 @@ This turns on the clock globally.
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (setq neo-smart-open t)
   (setq neo-show-slash-for-folder nil))
+#+END_SRC
+
+** Auto dim other buffers
+#+BEGIN_SRC emacs-lisp
+(use-package auto-dim-other-buffers :ensure t)
 #+END_SRC
 
 * Programming
@@ -327,7 +345,6 @@ This turns on the clock globally.
  ;           (lambda ()
                ; (when (fboundp 'auto-dim-other-buffers-mode)
                 ;  (auto-dim-other-buffers-mode t))))
-
 
 #+END_SRC
 
