@@ -382,25 +382,28 @@ Settings for Org mode
 
 ** Org-capture
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-c c") 'org-capture)
-(setq org-default-notes-file "~/notes/organizer.org")
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (setq org-default-notes-file "~/notes/organizer.org")
 
-(setq org-capture-templates
-      '(("t" "Personal Task" entry
-         (file+headline org-default-notes-file "Tasks")
-         "* TODO %? %u")
-        ("w" "Work-related Task" entry
-         (file+headline "~/notes/mt/work.org" "New")
-         "* TODO %? %u")
-        ("r" "Read later" entry
-         (file+headline org-default-notes-file "Read Later")
-         "* TODO %?\n%u - %c")
-        ("g" "game idea" entry
-         (file "~/notes/gameideas.org")
-         "* %? %u")
-        ("i" "random idea" entry
-         (file "~/notes/ideas.org")
-         "* %? %u")))
+  (setq org-capture-templates
+        '(("t" "Personal Task" entry
+           (file+headline org-default-notes-file "Tasks")
+           "* TODO %? %u")
+          ("w" "Work-related Task" entry
+           (file+headline "~/notes/mt/work.org" "New")
+           "* TODO %? %u")
+          ("r" "Read later" entry
+           (file+headline org-default-notes-file "Read Later")
+           "* TODO %?\n%u - %c")
+          ("p" "Peeps" table-line
+           (file+headline "~/notes/peeps.org" "New")
+           "|%?||")
+          ("g" "game idea" entry
+           (file "~/notes/gameideas.org")
+           "* %? %u")
+          ("i" "random idea" entry
+           (file "~/notes/ideas.org")
+           "* %? %u")))
 #+END_SRC
 
 * Apps
