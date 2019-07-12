@@ -290,7 +290,6 @@ This turns on the clock globally.
       (tide-hl-identifier-mode +1)
       (company-mode +1))
 
-
   (use-package tide
     :ensure t
     :init 
@@ -317,6 +316,8 @@ This turns on the clock globally.
 
 ** Unsorted tings about web programming
 #+BEGIN_SRC emacs-lisp
+
+; use company, company-tern
   ;(eval-after-load 'flycheck
   ;  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
 
