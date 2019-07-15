@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("stuartspeaker"
+(("tinyrun"
+ (filename . "~/Documents/dev/game/tinyrun/")
+ (front-context-string . "docs\n  -rw-rw-r-")
+ (rear-context-string . " Jun 28 10:54  ")
+ (position . 265))
+("stuartspeaker"
  (filename . "/ftp:mrspeak@ftp.mrspeaker.net:/www/wp-content/themes/stuartspeaker/")
  (front-context-string . "404.php\n  -rw-r-")
  (rear-context-string . " Feb 13 01:08  ")
@@ -33,15 +38,10 @@
  (rear-context-string . " Jun  2 11:53  ")
  (position . 269))
 ("org-capture-last-stored"
- (filename . "~/notes/organizer.org")
- (front-context-string . "** TODO Relearn ")
- (rear-context-string . "er-machine.html\n")
- (position . 1754))
-("tiny"
- (filename . "~/Documents/dev/game/tiny/")
- (front-context-string . ".git\n  -rw-r--r-")
- (rear-context-string . "96 May  7 10:55 ")
- (position . 321))
+ (filename . "~/notes/ideas.org")
+ (front-context-string . "* book - program")
+ (rear-context-string . "an app instead?\n")
+ (position . 4326))
 ("digoc"
  (filename . "/ssh:root@192.241.174.97:/")
  (front-context-string . "bin\n  drwxr-xr-x")
