@@ -2,8 +2,6 @@
 !.gitignore
 !init.el
 !config.org
-!bookmarks
-!eww-bookmarks
 !lisp/
 !lisp/*
 !themes/
