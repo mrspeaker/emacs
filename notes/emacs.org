@@ -1,0 +1,23 @@
+* Emacs notes
+
+** Meta
+*** Help
+M-x desribe-key-briefly : C-h c : show command bound to key
+M-x apropos-command : C-h a : show help for command by name
+*** History
+M-x list-command-history : exectued commands
+M-x view-lossage : keypress history
+*** Documenworts
+M-x revert-buffer : refresh current document
+
+** org-mode
+C-c @ - org-mark-subtree
+C-c * - toggle heading
+
+C-c C-x C-w - org-cut-subtree etc.
+C-c C-x M-w - org-copy-subtree
+
+C-x n s - org-narrow-to-subtree
+C-x n w - widen
+
+C-c f / C-c b - forward/back same level

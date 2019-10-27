@@ -6,4 +6,5 @@
 !lisp/*
 !themes/
 !themes/*
-
+!notes/
+!notes/*
