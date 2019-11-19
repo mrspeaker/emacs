@@ -86,6 +86,12 @@ Choose to set or hide by changing =-1= to =1=.
 (tool-bar-mode -1)
 (menu-bar-mode 1)
 (scroll-bar-mode -1)
+
+;; messing with mac title bar
+(when (memq window-system '(mac ns))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark)) ; nil for dark text
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . nil)))
+
 #+END_SRC
 
 *** Load the theme

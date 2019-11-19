@@ -7,7 +7,7 @@ M-x apropos-command : C-h a : show help for command by name
 *** History
 M-x list-command-history : exectued commands
 M-x view-lossage : keypress history
-*** Documenworts
+*** Documents
 M-x revert-buffer : refresh current document
 ** Dired
 M-x wdired-change-to-wdired-mode : edit directory
