@@ -251,10 +251,11 @@ This turns on the clock globally.
 
 ** Auto dim other buffers
 #+BEGIN_SRC emacs-lisp
-      (use-package auto-dim-other-buffers
-        :ensure t
-        :init
-        (auto-dim-other-buffers-mode nil)) ; disabled for tron-theme!
+  ;; (use-package auto-dim-other-buffers
+  ;;   :ensure t
+  ;;   :init
+  ;;   (auto-dim-other-buffers-mode t)) ; disabled for tron-theme!
+;;;  custom-set-faces: '(auto-dim-other-buffers-face ((t (:background "#0a0a0d"))))
 #+END_SRC
 
 * Programming
