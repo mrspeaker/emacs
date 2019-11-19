@@ -128,8 +128,8 @@ Quiet, please! No dinging!
   (defun flash-mode-line ()
     ;(invert-face 'mode-line)
     ;(run-with-timer 0.1 nil #'invert-face 'mode-line))
-    (set-face-foreground 'mode-line "#F2804F")
     (let ((orig-fg (face-foreground 'mode-line)))
+      (set-face-foreground 'mode-line "#F2804F")
       (run-with-idle-timer 0.1 nil
                            (lambda (fg) (set-face-foreground 'mode-line fg))
                            orig-fg)))
