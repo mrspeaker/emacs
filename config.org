@@ -23,6 +23,10 @@ Then test this actually works on a new machine.
   (require 're-builder)
   (setq reb-re-syntax 'string)
 
+  ; Use source if newer than byte-complied version
+  (setq load-prefer-newer t)
+
+
   ; Tabs. TODO: which of these does stuff?!
   (setq-default indent-tabs-mode nil)
   (setq-default js2-tab-width 2)
