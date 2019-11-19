@@ -9,7 +9,9 @@ M-x list-command-history : exectued commands
 M-x view-lossage : keypress history
 *** Documenworts
 M-x revert-buffer : refresh current document
-
+** Dired
+M-x wdired-change-to-wdired-mode : edit directory
+-- C-c : save edits
 ** org-mode
 C-c @ - org-mark-subtree
 C-c * - toggle heading
