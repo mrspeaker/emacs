@@ -308,6 +308,22 @@ This turns on the clock globally.
                   (setup-tide-mode)))))
 #+END_SRC
 
+** Purescript
+#+BEGIN_SRC emacs-lisp
+  (use-package psc-ide 
+    :ensure t
+    :init 
+  (add-to-list 'auto-mode-alist '("\\.purs\\'" . purescript-mode))
+  (add-hook 'purescript-mode-hook
+    (lambda ()
+      (psc-ide-mode)
+      (company-mode)
+      (flycheck-mode)
+      (turn-on-purescript-indentation)))
+  )
+  (global-set-key (kbd "C-M-SPC") 'company-complete)
+#+END_SRC
+
 ** Other modes
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode :ensure t)
