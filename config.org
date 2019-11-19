@@ -185,6 +185,9 @@ This turns on the clock globally.
   (global-set-key (kbd "C-x g") 'magit-status)
   ;(define-key org-mode-map "M-q" 'toggle-truncate-lines)
   (global-set-key [remap dabbrev-expand] 'hippie-expand)
+  
+  ; Company complete
+  (global-set-key (kbd "C-M-SPC") 'company-complete)
 
   ; Whater are thise mouse ones for?
   (global-set-key (kbd "<mouse-3>") 'mouse-major-mode-menu)
@@ -248,7 +251,10 @@ This turns on the clock globally.
 
 ** Auto dim other buffers
 #+BEGIN_SRC emacs-lisp
-(use-package auto-dim-other-buffers :ensure t)
+      (use-package auto-dim-other-buffers
+        :ensure t
+        :init
+        (auto-dim-other-buffers-mode t))
 #+END_SRC
 
 * Programming
@@ -325,7 +331,6 @@ This turns on the clock globally.
       (flycheck-mode)
       (turn-on-purescript-indentation)))
   )
-  (global-set-key (kbd "C-M-SPC") 'company-complete)
 #+END_SRC
 
 ** Other modes
