@@ -254,7 +254,7 @@ This turns on the clock globally.
       (use-package auto-dim-other-buffers
         :ensure t
         :init
-        (auto-dim-other-buffers-mode t))
+        (auto-dim-other-buffers-mode nil)) ; disabled for tron-theme!
 #+END_SRC
 
 * Programming
@@ -369,10 +369,6 @@ This turns on the clock globally.
         (add-hook 'web-mode-hook 'prettier-js-mode))
 
   (add-hook 'after-init-hook #'global-flycheck-mode)
-;  (add-hook 'after-init-hook
- ;           (lambda ()
-               ; (when (fboundp 'auto-dim-other-buffers-mode)
-                ;  (auto-dim-other-buffers-mode t))))
 
 #+END_SRC
 
