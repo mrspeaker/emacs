@@ -13,10 +13,14 @@
 
 (package-initialize)
 
-(setenv "PATH" (concat "/usr/local/bin:"
+; TODO test it does anything good.
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+; TODO: needed?
+(setenv "PATH" (concat "/usr/local/bin:/Users/mrspeaker/:"
                        (getenv "PATH")))
 
-(setq shr-color-visible-luminance-min 70) ; nicer eww background
 (global-auto-revert-mode) ;; testing this
 
 ;;; Bootstrapping use-package
