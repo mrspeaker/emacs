@@ -156,7 +156,7 @@ Quiet, please! No dinging!
     (add-hook 'after-init-hook 'whole-line-or-region-global-mode))
 #+END_SRC
 *** Set UTF-8 encoding
-#+BEGIN_SRC emacs-lisp 
+#+BEGIN_SRC emacs-lisp
   (setq locale-coding-system 'utf-8)
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8)
@@ -191,7 +191,7 @@ This turns on the clock globally.
   (global-set-key (kbd "C-x g") 'magit-status)
   ;(define-key org-mode-map "M-q" 'toggle-truncate-lines)
   (global-set-key [remap dabbrev-expand] 'hippie-expand)
-  
+
   ; Company complete
   (global-set-key (kbd "C-M-SPC") 'company-complete)
 
@@ -265,6 +265,13 @@ This turns on the clock globally.
 #+END_SRC
 
 * Programming
+** flycheck
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
+
+#+END_SRC
 ** Line numbering
 #+BEGIN_SRC emacs-lisp
   ;; (use-package linum-relative
@@ -279,7 +286,7 @@ This turns on the clock globally.
 ** Web & JS Mode
 *** JS2Mode
 #+BEGIN_SRC emacs-lisp
-(use-package js2-mode 
+(use-package js2-mode
   :ensure t
   :init (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
 #+END_SRC
@@ -309,7 +316,7 @@ This turns on the clock globally.
 
   (use-package tide
     :ensure t
-    :init 
+    :init
     ; aligns annotation to the right hand side
     (setq company-tooltip-align-annotations t)
     ;; (add-hook 'before-save-hook 'tide-format-before-save) - oh nope - bad formating.
@@ -327,16 +334,18 @@ This turns on the clock globally.
 
 ** Purescript
 #+BEGIN_SRC emacs-lisp
-  (use-package psc-ide 
+  (use-package psc-ide
     :ensure t
-    :init 
+    :init
   (add-to-list 'auto-mode-alist '("\\.purs\\'" . purescript-mode))
   (add-hook 'purescript-mode-hook
     (lambda ()
       (psc-ide-mode)
       (company-mode)
       (flycheck-mode)
-      (turn-on-purescript-indentation)))
+      (turn-on-purescript-indentation))
+      ;; (add-to-list 'write-file-functions 'delete-trailing-whitespace)
+      )
   )
 #+END_SRC
 
@@ -374,9 +383,6 @@ This turns on the clock globally.
         (add-hook 'js2-mode-hook (lambda() (prettier-js-mode)))
         (add-hook 'typescript-mode-hook (lambda() (prettier-js-mode)))
         (add-hook 'web-mode-hook 'prettier-js-mode))
-
-  (add-hook 'after-init-hook #'global-flycheck-mode)
-
 #+END_SRC
 
 * Dired
@@ -470,8 +476,7 @@ Settings for Org mode
 #+BEGIN_SRC emacs-lisp
 (use-package md4rd
   :ensure t
-  :init 
+  :init
   (setq md4rd-subs-active '(emacs gamedev spacex orgmode fortnitebr)))
 ; '(md4rd-subs-active (quote (emacs gamedev spacex orgmode fortnitebr)) t)
 #+END_SRC
-
