@@ -105,7 +105,7 @@ Choose to set or hide by changing =-1= to =1=.
 *** Fonts
 Set the default line height
 #+BEGIN_SRC emacs-lisp
-(setq-default line-spacing 0.12)
+  (setq-default line-spacing 0.15)
 #+END_SRC
 
 *** Misc (TODO: sort)
