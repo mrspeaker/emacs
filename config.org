@@ -19,13 +19,11 @@ Then test this actually works on a new machine.
 
 ** TODO: All the things - unsorted and unorganised
 #+BEGIN_SRC emacs-lisp
-
   (require 're-builder)
   (setq reb-re-syntax 'string)
 
   ; Use source if newer than byte-complied version
   (setq load-prefer-newer t)
-
 
   ; Tabs. TODO: which of these does stuff?!
   (setq-default indent-tabs-mode nil)
@@ -44,8 +42,8 @@ Then test this actually works on a new machine.
   ;;  Modes
 
   ;; Ido
-  (setq ido-enable-flex-matching t)
   (setq ido-everywhere t)
+  (setq ido-enable-flex-matching t)
   (ido-mode 1)
   (setq ido-create-new-buffer 'always)
   (setq ido-use-filename-at-point 'guess)
@@ -53,21 +51,21 @@ Then test this actually works on a new machine.
   ;; Hooks
   (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
- (require 'sunshine) ; Weather: sunshine-forecast
+  (require 'sunshine) ; Weather: sunshine-forecast
 
   (require 'yasnippet)
   (yas-global-mode 1)
 
-  ; erc
+  ;; erc
   (setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
   (setq erc-lurker-threshold-time 3600)
 
-(use-package expand-region
-  :ensure t
-  :bind ("C-'" . er/expand-region))
-; This was the old keybind: (global-set-key (kbd "C-'") 'er/expand-region)
-; Todo: this makes the command "ignore", but doens't run expand region in orgfile
-(global-set-key [remap org-cycle-agenda-files] 'ignore) ; tmp - same keybind as expand rgion above
+  (use-package expand-region
+    :ensure t
+    :bind ("C-'" . er/expand-region))
+  ; This was the old keybind: (global-set-key (kbd "C-'") 'er/expand-region)
+  ; Todo: this makes the command "ignore", but doens't run expand region in orgfile
+  (global-set-key [remap org-cycle-agenda-files] 'ignore) ; tmp - same keybind as expand rgion above
 
 #+END_SRC
 
@@ -77,20 +75,20 @@ These are setting that do not depend on packages and are built-in enhancements t
 ** Look n feel
 *** Remove startup screen
 #+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-message t)
+  (setq inhibit-startup-message t)
 #+END_SRC
 
 *** Set menus and scrollbars
 Choose to set or hide by changing =-1= to =1=.
 #+BEGIN_SRC emacs-lisp
-(tool-bar-mode -1)
-(menu-bar-mode 1)
-(scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (menu-bar-mode 1)
+  (scroll-bar-mode -1)
 
-;; messing with mac title bar
-(when (memq window-system '(mac ns))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark)) ; nil for dark text
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . nil)))
+  ;; messing with mac title bar
+  (when (memq window-system '(mac ns))
+    (add-to-list 'default-frame-alist '(ns-appearance . dark)) ; nil for dark text
+    (add-to-list 'default-frame-alist '(ns-transparent-titlebar . nil)))
 
 #+END_SRC
 
@@ -122,8 +120,6 @@ Set the default line height
   ; y/n instead of yes/no
   (fset 'yes-or-no-p 'y-or-n-p)
 
-
-
 #+END_SRC
 
 *** Disable bell
@@ -143,9 +139,9 @@ Quiet, please! No dinging!
 
 *** Line-wrap icons on right side only.
 #+BEGIN_SRC emacs-lisp
-(setf (cdr (assq 'continuation fringe-indicator-alist))
-			'(nil right-curly-arrow)
-			)
+  (setf (cdr (assq 'continuation fringe-indicator-alist))
+        '(nil right-curly-arrow)
+        )
 #+END_SRC
 
 *** Whole line or region
@@ -271,6 +267,10 @@ This turns on the clock globally.
     :ensure t
     :init (global-flycheck-mode))
 
+  (defun disable-fylcheck-in-org-src-block ()
+    (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+
+  (add-hook 'org-src-mode-hook 'disable-fylcheck-in-org-src-block)
 #+END_SRC
 ** Line numbering
 #+BEGIN_SRC emacs-lisp
@@ -360,7 +360,7 @@ This turns on the clock globally.
 ** Unsorted tings about web programming
 #+BEGIN_SRC emacs-lisp
 
-; use company, company-tern
+  ; use company, company-tern
   ;(eval-after-load 'flycheck
   ;  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
 
@@ -374,7 +374,7 @@ This turns on the clock globally.
                              (tern-mode)
                              (company-mode)))
 
-; todo: figure out to make this work: (no-port-file).... (add-hook 'after-init-hook (lambda () (setq tern-command (append tern-command '("--no-port-file")))))
+  ; todo: figure out to make this work: (no-port-file).... (add-hook 'after-init-hook (lambda () (setq tern-command (append tern-command '("--no-port-file")))))
 
   (use-package prettier-js
     :ensure t
@@ -383,6 +383,7 @@ This turns on the clock globally.
         (add-hook 'js2-mode-hook (lambda() (prettier-js-mode)))
         (add-hook 'typescript-mode-hook (lambda() (prettier-js-mode)))
         (add-hook 'web-mode-hook 'prettier-js-mode))
+
 #+END_SRC
 
 * Dired
