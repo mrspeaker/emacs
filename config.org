@@ -272,15 +272,12 @@ This turns on the clock globally.
 
   (add-hook 'org-src-mode-hook 'disable-fylcheck-in-org-src-block)
 #+END_SRC
-** Line numbering
+** Line numbering & Truncate long lines
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package linum-relative
-  ;;   :ensure t
-  ;;   :config
-  ;;     (setq linum-relative-current-symbol "")
-  ;;     (add-hook 'prog-mode-hook 'linum-relative-mode))
-
-  ; (add-hook 'prog-mode-hook 'linum-mode)
+  (add-hook 'prog-mode-hook (lambda ()
+                              (linum-mode)
+                              (toggle-truncate-lines nil)))
+  (set-face-foreground 'linum "#333")
 #+END_SRC
 
 ** Web & JS Mode
