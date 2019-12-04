@@ -53,12 +53,17 @@ Then test this actually works on a new machine.
 
   (require 'sunshine) ; Weather: sunshine-forecast
 
-  (require 'yasnippet)
-  (yas-global-mode 1)
+  ;;(require 'yasnippet)
+  ;;(yas-global-mode 1)
 
   ;; erc
   (setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
   (setq erc-lurker-threshold-time 3600)
+  (setq erc-server-reconnect-attempts 5)
+  (setq erc-server-reconnect-timeout 3)
+  ;; Stop displaying channels in the mode line for no good reason.
+  (setq erc-track-exclude-types
+        '("JOIN" "KICK" "NICK" "PART" "QUIT" "MODE" "333" "353"))
 
   (use-package expand-region
     :ensure t
