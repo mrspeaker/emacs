@@ -344,6 +344,7 @@ This turns on the clock globally.
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode :ensure t)
 (use-package php-mode :ensure t)
+(use-package lua-mode :ensure t)
 
 (require 'pico8-mode)
 #+END_SRC
