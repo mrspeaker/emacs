@@ -487,3 +487,13 @@ Settings for Org mode
   (setq md4rd-subs-active '(emacs gamedev spacex orgmode fortnitebr)))
 ; '(md4rd-subs-active (quote (emacs gamedev spacex orgmode fortnitebr)) t)
 #+END_SRC
+
+** BTC price
+#+BEGIN_SRC emacs-lisp
+(defun fetch-btc ()
+  "Fetch current BTC price"
+  (interactive)
+  (shell-command
+   "curl https://api-pub.bitfinex.com/v2/ticker/tBTCUSD"
+   ))
+#+END_SRC
