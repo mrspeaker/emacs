@@ -83,6 +83,7 @@ Choose to set or hide by changing =-1= to =1=.
     (add-to-list 'default-frame-alist '(ns-appearance . dark)) ; nil for dark text
     (add-to-list 'default-frame-alist '(ns-transparent-titlebar . nil)))
 
+  (set-face-attribute 'fringe nil :background nil)
 #+END_SRC
 
 *** Load the theme
