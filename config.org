@@ -6,9 +6,7 @@
 #+ATTR_HTML: :style margin-left: auto; margin-right: auto;
 
 * Overview
-=init.el= but in an org file. Idea and code from [[https://github.com/daedreth/UncleDavesEmacs][Uncle Dave's Emacs]]. This is a work in progress - converting my old init.el to config.org that loads all pacakges with use-package. Need to go to init.el and package-delete everything in package-selected-packages and move them to use-package.
-
-Then test this actually works on a new machine.
+Emacs =init.el=, but in an org file. Idea (and code) stolen from [[https://github.com/daedreth/UncleDavesEmacs][Uncle Dave's Emacs]].
 
 ** Set load paths
 #+BEGIN_SRC emacs-lisp
