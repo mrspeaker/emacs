@@ -485,8 +485,7 @@ Settings for Org mode
 (use-package md4rd
   :ensure t
   :init
-  (setq md4rd-subs-active '(emacs gamedev spacex orgmode fortnitebr)))
-; '(md4rd-subs-active (quote (emacs gamedev spacex orgmode fortnitebr)) t)
+  (setq md4rd-subs-active '(emacs gamedev spacex orgmode)))
 #+END_SRC
 
 ** BTC price
