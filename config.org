@@ -272,6 +272,7 @@ This turns on the clock globally.
   (add-hook 'prog-mode-hook (lambda ()
                               (linum-mode)
                               (toggle-truncate-lines nil)
+                              (subword-mode 1)
                               (set-face-foreground 'linum "#333")))
 #+END_SRC
 
