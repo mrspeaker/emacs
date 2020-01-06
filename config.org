@@ -510,10 +510,17 @@ Settings for Org mode
 
 ** BTC price
 #+BEGIN_SRC emacs-lisp
-(defun fetch-btc ()
-  "Fetch current BTC price"
-  (interactive)
-  (shell-command
-   "curl https://api-pub.bitfinex.com/v2/ticker/tBTCUSD"
-   ))
+  (defun fetch-btc ()
+    "Fetch current BTC price"
+    (interactive)
+    (shell-command
+     "curl https://api-pub.bitfinex.com/v2/ticker/tBTCUSD"
+     ))
+#+END_SRC
+** Get my IP
+#+BEGIN_SRC emacs-lisp
+  (defun my-ip ()
+    "SHow my ip"
+    (interactive)
+    (shell-command "ifconfig | grep inet"))
 #+END_SRC
