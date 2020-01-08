@@ -36,7 +36,9 @@ Emacs =init.el=, but in an org file. Idea (and code) stolen from [[https://githu
   (defvar autosave-dir (expand-file-name "~/.emacs.d/autosave/"))
   (setq backup-directory-alist (list (cons ".*" backup-dir)))
   (setq auto-save-list-file-prefix autosave-dir)
-  (setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
+  ;;(setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
+  (setq auto-save-file-name-transforms
+        `((".*" ,(expand-file-name "\\2" autosave-dir) t)))
 
   ;;  Modes
 
