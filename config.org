@@ -23,7 +23,6 @@ Emacs =init.el=, but in an org file. Idea (and code) stolen from [[https://githu
   (require 're-builder)
   (setq reb-re-syntax 'string)
 
-
   ; Tabs. TODO: which of these does stuff?!
   (setq-default indent-tabs-mode nil)
   (setq-default js2-tab-width 2)
@@ -31,14 +30,13 @@ Emacs =init.el=, but in an org file. Idea (and code) stolen from [[https://githu
   (setq-default js2-basic-offset 2)
   (setq js-indent-level 2)
 
-   ;;; backup/autosave
+   ; backup/autosave
   (defvar backup-dir (expand-file-name "~/.emacs.d/backups/"))
   (defvar autosave-dir (expand-file-name "~/.emacs.d/autosave/"))
   (setq backup-directory-alist (list (cons ".*" backup-dir)))
   (setq auto-save-list-file-prefix autosave-dir)
-  ;;(setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
-  (setq auto-save-file-name-transforms
-        `((".*" ,(expand-file-name "\\2" autosave-dir) t)))
+  (setq auto-save-file-name-transforms `((".*", autosave-dir t)))
+  (setq create-lockfiles nil) ; Not sure if this is smart, but stops .#files getting vc'd
 
   ;;  Modes
 
