@@ -23,14 +23,14 @@ Emacs =init.el=, but in an org file. Idea (and code) stolen from [[https://githu
   (require 're-builder)
   (setq reb-re-syntax 'string)
 
-  ; Tabs. TODO: which of these does stuff?!
+  ;; Tabs. TODO: which of these does stuff?!
   (setq-default indent-tabs-mode nil)
   (setq-default js2-tab-width 2)
   (setq-default tab-width 2)
   (setq-default js2-basic-offset 2)
   (setq js-indent-level 2)
 
-   ; backup/autosave
+  ;; backup/autosave
   (defvar backup-dir (expand-file-name "~/.emacs.d/backups/"))
   (defvar autosave-dir (expand-file-name "~/.emacs.d/autosave/"))
   (setq backup-directory-alist (list (cons ".*" backup-dir)))
@@ -70,8 +70,8 @@ Emacs =init.el=, but in an org file. Idea (and code) stolen from [[https://githu
   (use-package expand-region
     :ensure t
     :bind ("C-'" . er/expand-region))
-                                          ; This was the old keybind: (global-set-key (kbd "C-'") 'er/expand-region)
-                                          ; Todo: this makes the command "ignore", but doens't run expand region in orgfile
+  ;; This was the old keybind: (global-set-key (kbd "C-'") 'er/expand-region)
+  ;; Todo: this makes the command "ignore", but doens't run expand region in orgfile
   (global-set-key [remap org-cycle-agenda-files] 'ignore) ; tmp - same keybind as expand rgion above
 
 #+END_SRC
@@ -103,10 +103,10 @@ Choose to set or hide by changing =-1= to =1=.
 
 *** Load the theme
 #+BEGIN_SRC emacs-lisp
-;(use-package gruvbox-theme
-; :ensure t
-; :init
-;  (load-theme 'gruvbox-light-hard))
+  ;;(use-package gruvbox-theme
+  ;; :ensure t
+  ;; :init
+  ;;  (load-theme 'gruvbox-light-hard))
 #+END_SRC
 
 *** Fonts
@@ -123,10 +123,10 @@ Set the default line height
 
   (delete-selection-mode 1) ; Overwrite current text selection
 
-  ; Repeatedly use C-spc after C-u spc to cycle through mark ring
+  ;; Repeatedly use C-spc after C-u spc to cycle through mark ring
   (setq set-mark-command-repeat-pop t)
 
-  ; y/n instead of yes/no
+  ;; y/n instead of yes/no
   (fset 'yes-or-no-p 'y-or-n-p)
 
 #+END_SRC
@@ -137,8 +137,8 @@ Quiet, please! No dinging!
   (setq visible-bell nil
         ring-bell-function 'flash-mode-line)
   (defun flash-mode-line ()
-    ;(invert-face 'mode-line)
-    ;(run-with-timer 0.1 nil #'invert-face 'mode-line))
+    ;; (invert-face 'mode-line)
+    ;; (run-with-timer 0.1 nil #'invert-face 'mode-line))
     (let ((orig-fg (face-foreground 'mode-line)))
       (set-face-foreground 'mode-line "#F2804F")
       (run-with-idle-timer 0.1 nil
@@ -186,28 +186,28 @@ This turns on the clock globally.
 
 ** Keybinds
 #+BEGIN_SRC emacs-lisp
-  ; Keybinds
+  ;; Keybinds
   (global-set-key (kbd "C-;") 'other-window)
   (global-set-key (kbd "M-;") (lambda() (interactive) (other-window -1)))
   (global-set-key (kbd "M-[") 'previous-buffer)
   (global-set-key (kbd "M-]") 'next-buffer)
-  ;(define-key flyspell-mode-map (kbd "C-;") nil) ; unbind in flyspell
+  ;;(define-key flyspell-mode-map (kbd "C-;") nil) ; unbind in flyspell
   (global-set-key (kbd "M-\"") 'insert-pair) ;Wrap quotes
   (global-set-key (kbd "C-x g") 'magit-status)
-  ;(define-key org-mode-map "M-q" 'toggle-truncate-lines)
+  ;;(define-key org-mode-map "M-q" 'toggle-truncate-lines)
   (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-  ; Company complete
+  ;; Company complete
   (global-set-key (kbd "C-M-SPC") 'company-complete)
 
-  ; Whater are thise mouse ones for?
+  ;; Whater are thise mouse ones for?
   (global-set-key (kbd "<mouse-3>") 'mouse-major-mode-menu)
   (global-set-key (kbd "<C-mouse-3>") 'mouse-popup-menubar)
 
   (global-set-key [remap upcase-region] 'ignore)  ; because it triggers whenever i typo c-x u
 
   (put 'narrow-to-region 'disabled nil) ; TODO: why?
-  ; (global-set-key [remap flyspell-autocorrect-previous-word] 'ignore)
+  ;; (global-set-key [remap flyspell-autocorrect-previous-word] 'ignore)
 
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier nil)
@@ -239,8 +239,8 @@ This turns on the clock globally.
 * Enhancements
 ** All the icons
 #+BEGIN_SRC emacs-lisp
-; Note: need to run M-x all-the-icons-install-fonts after use-pacakge...
-; is there a way to do this automagically?
+;; Note: need to run M-x all-the-icons-install-fonts after use-pacakge...
+;; is there a way to do this automagically?
 (use-package all-the-icons :ensure t)
 (use-package all-the-icons-dired
   :ensure t
@@ -250,7 +250,7 @@ This turns on the clock globally.
 
 ** Neotree
 #+BEGIN_SRC emacs-lisp
-; TODO: fork repo, apply my patches, use that.
+;; TODO: fork repo, apply my patches, use that.
 (use-package neotree
   :ensure t
   :init
@@ -312,7 +312,7 @@ This turns on the clock globally.
 
 *** Typescript
 #+BEGIN_SRC emacs-lisp
-    ; TIDE
+    ;; TIDE
     (defun setup-tide-mode ()
       (interactive)
       (tide-setup)
@@ -325,7 +325,7 @@ This turns on the clock globally.
   (use-package tide
     :ensure t
     :init
-    ; aligns annotation to the right hand side
+    ;; aligns annotation to the right hand side
     (setq company-tooltip-align-annotations t)
     ;; (add-hook 'before-save-hook 'tide-format-before-save) - oh nope - bad formating.
     (add-hook 'typescript-mode-hook #'setup-tide-mode)
@@ -369,21 +369,21 @@ This turns on the clock globally.
 ** Unsorted tings about web programming
 #+BEGIN_SRC emacs-lisp
 
-  ; use company, company-tern
-  ;(eval-after-load 'flycheck
-  ;  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
+  ;; use company, company-tern
+  ; (eval-after-load 'flycheck
+  ;;  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
 
   (setq flycheck-javascript-eslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/eslint")
-  ;(setq flycheck-javascript-tslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/tslint")
+  ;;(setq flycheck-javascript-tslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/tslint")
 
   ;; ;; (flycheck-add-mode 'javascript-eslint 'web-mode) - check this - no such thing?
-  ; (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
-  ; (flycheck-add-mode 'typescript-tslint 'web-mode)
+  ;; (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
+  ;; (flycheck-add-mode 'typescript-tslint 'web-mode)
   (add-hook 'js2-mode-hook (lambda ()
                              (tern-mode)
                              (company-mode)))
 
-  ; todo: figure out to make this work: (no-port-file).... (add-hook 'after-init-hook (lambda () (setq tern-command (append tern-command '("--no-port-file")))))
+  ;; todo: figure out to make this work: (no-port-file).... (add-hook 'after-init-hook (lambda () (setq tern-command (append tern-command '("--no-port-file")))))
 
   (use-package prettier-js
     :ensure t
@@ -399,7 +399,7 @@ This turns on the clock globally.
 Settings for dired
 
 #+BEGIN_SRC emacs-lisp
-  ; Dired
+  ;; Dired
   (setq dired-dwim-target t)
   (add-hook 'dired-mode-hook
             (lambda()
