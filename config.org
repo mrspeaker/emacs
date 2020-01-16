@@ -98,7 +98,8 @@ Choose to set or hide by changing =-1= to =1=.
     (add-to-list 'default-frame-alist '(ns-transparent-titlebar . nil)))
 
   ;; FIXME this is overwritten somewhere during load
-  (set-face-attribute 'fringe nil :background nil)
+  (add-hook 'after-init-hook (lambda ()
+                               (set-face-attribute 'fringe nil :background nil)))
 #+END_SRC
 
 *** Load the theme
@@ -159,6 +160,7 @@ Quiet, please! No dinging!
     :ensure t
     :init
     (add-hook 'after-init-hook 'whole-line-or-region-global-mode))
+    ;; TODO: doesn't need to be a hook, right?!
 #+END_SRC
 *** Set UTF-8 encoding
 #+BEGIN_SRC emacs-lisp
