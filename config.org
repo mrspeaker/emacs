@@ -97,7 +97,6 @@ Choose to set or hide by changing =-1= to =1=.
     (add-to-list 'default-frame-alist '(ns-appearance . dark)) ; nil for dark text
     (add-to-list 'default-frame-alist '(ns-transparent-titlebar . nil)))
 
-  ;; FIXME this is overwritten somewhere during load
   (add-hook 'after-init-hook (lambda ()
                                (set-face-attribute 'fringe nil :background nil)))
 #+END_SRC
