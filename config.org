@@ -1,4 +1,3 @@
-#+STARTUP: overview
 #+TITLE: Mr Speaker's Emacs
 #+CREATOR: Mr Speaker
 #+LANGUAGE: en
@@ -346,16 +345,44 @@ This turns on the clock globally.
   (use-package psc-ide
     :ensure t
     :init
-  (add-to-list 'auto-mode-alist '("\\.purs\\'" . purescript-mode))
-  (add-hook 'purescript-mode-hook
-    (lambda ()
-      (psc-ide-mode)
-      (company-mode)
-      (flycheck-mode)
-      (turn-on-purescript-indentation))
-      (add-to-list 'write-file-functions 'delete-trailing-whitespace)
-      )
+    (add-to-list 'auto-mode-alist '("\\.purs\\'" . purescript-mode))
+    (add-hook 'purescript-mode-hook
+              (lambda ()
+                (psc-ide-mode)
+                (company-mode)
+                (flycheck-mode)
+                (turn-on-purescript-indentation)
+                (add-to-list 'write-file-functions 'delete-trailing-whitespace))
+              )
   )
+#+END_SRC
+
+** Prettier/EsLint/Tern/Company
+#+BEGIN_SRC emacs-lisp
+  (use-package prettier-js
+    :ensure t
+    :init
+        (setq prettier-js-command "/home/mrspeaker/.nvm/versions/node/v13.0.1/bin/prettier")
+        (add-hook 'js2-mode-hook (lambda() (prettier-js-mode)))
+        (add-hook 'typescript-mode-hook (lambda() (prettier-js-mode)))
+        (add-hook 'web-mode-hook 'prettier-js-mode))
+
+  ;; use company, company-tern
+  ; (eval-after-load 'flycheck
+  ;;  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
+
+  ;; (setq flycheck-javascript-eslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/eslint")
+  ;; (setq flycheck-javascript-tslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/tslint")
+  ;; ;; (flycheck-add-mode 'javascript-eslint 'web-mode) - check this - no such thing?
+  ;; (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
+  ;; (flycheck-add-mode 'typescript-tslint 'web-mode)
+
+  (add-hook 'js2-mode-hook (lambda ()
+                             (tern-mode)
+                             (company-mode)))
+
+  ;; todo: figure out to make this work: (no-port-file).... (add-hook 'after-init-hook (lambda () (setq tern-command (append tern-command '("--no-port-file")))))
+
 #+END_SRC
 
 ** Other modes
@@ -365,35 +392,6 @@ This turns on the clock globally.
 (use-package lua-mode :ensure t)
 
 (require 'pico8-mode)
-#+END_SRC
-
-** Unsorted tings about web programming
-#+BEGIN_SRC emacs-lisp
-
-  ;; use company, company-tern
-  ; (eval-after-load 'flycheck
-  ;;  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
-
-  (setq flycheck-javascript-eslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/eslint")
-  ;;(setq flycheck-javascript-tslint-executable "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/tslint")
-
-  ;; ;; (flycheck-add-mode 'javascript-eslint 'web-mode) - check this - no such thing?
-  ;; (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
-  ;; (flycheck-add-mode 'typescript-tslint 'web-mode)
-  (add-hook 'js2-mode-hook (lambda ()
-                             (tern-mode)
-                             (company-mode)))
-
-  ;; todo: figure out to make this work: (no-port-file).... (add-hook 'after-init-hook (lambda () (setq tern-command (append tern-command '("--no-port-file")))))
-
-  (use-package prettier-js
-    :ensure t
-    :init
-        (setq prettier-js-command "/home/mrspeaker/.nvm/versions/node/v11.1.0/bin/prettier")
-        (add-hook 'js2-mode-hook (lambda() (prettier-js-mode)))
-        (add-hook 'typescript-mode-hook (lambda() (prettier-js-mode)))
-        (add-hook 'web-mode-hook 'prettier-js-mode))
-
 #+END_SRC
 
 * Dired
