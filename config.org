@@ -96,6 +96,7 @@ Choose to set or hide by changing =-1= to =1=.
     (add-to-list 'default-frame-alist '(ns-appearance . dark)) ; nil for dark text
     (add-to-list 'default-frame-alist '(ns-transparent-titlebar . nil)))
 
+  ;; Nope, still not working...
   (add-hook 'after-init-hook (lambda ()
                                (set-face-attribute 'fringe nil :background nil)))
 #+END_SRC
@@ -212,6 +213,9 @@ This turns on the clock globally.
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier nil)
 #+END_SRC
+
+** Layout & Splits
+;; TODO: add  '(split-height-threshold 160)
 
 ** Customizations
 #+BEGIN_SRC emacs-lisp
@@ -439,12 +443,15 @@ Settings for Org mode
  '(
    (js . t)
    ))
+(add-to-list 'org-babel-tangle-lang-exts '("js" . "js"))
 (setq org-src-fontify-natively t) ; syntax highlight
 (setq org-confirm-babel-evaluate nil) ; don't ask to exec
 (setq org-src-tab-acts-natively t) ; tab in code blocks
+
 #+END_SRC
 
 ** Org-capture
+*** Capture templates
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c c") 'org-capture)
   (setq org-default-notes-file "~/notes/organizer.org")
@@ -470,6 +477,19 @@ Settings for Org mode
            "* %? %u")))
 #+END_SRC
 
+** Export
+C-c C-e : bring up export menu
+C-c C-e h o : export to html & open
+
+*** Export properties
+(remove _'s below)
+#_+HTML_HEAD: <style>body { max-width: 90%; margin: 0 auto }</style>
+
+** Rec mode
+#+BEGIN_SRC
+(require 'rec-mode)
+ (add-to-list 'auto-mode-alist '("\\.rec\\'" . rec-mode))
+#+END_SRC
 * Apps
 ** Magit
 #+BEGIN_SRC emacs-lisp
