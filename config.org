@@ -286,6 +286,10 @@ This turns on the clock globally.
 
   (add-hook 'org-src-mode-hook 'disable-fylcheck-in-org-src-block)
 #+END_SRC
+** lisp
+#+BEGIN_SRC elisp
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
+#+END_SRC
 ** Line numbering & Truncate long lines
 #+BEGIN_SRC emacs-lisp
   (add-hook 'prog-mode-hook (lambda ()
@@ -492,8 +496,14 @@ C-c C-e h o : export to html & open
 #+END_SRC
 * Apps
 ** Magit
+Ah Magit, you are magic.
 #+BEGIN_SRC emacs-lisp
-(use-package magit :ensure t)
+  (use-package magit :ensure t)
+#+end_src
+
+But don't bug me about saving files
+#+begin_src emacs-lisp
+  (setq magit-save-repository-buffers nil)
 #+END_SRC
 
 ** ERC
