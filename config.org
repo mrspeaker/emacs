@@ -8,6 +8,7 @@
 Emacs =init.el=, but in an org file. Idea (and code) stolen from [[https://github.com/daedreth/UncleDavesEmacs][Uncle Dave's Emacs]].
 
 ** Set load paths & init
+Stuff to do a the start. Load paths, general initialization settings
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
   (add-to-list 'load-path "~/.emacs.d/themes/")
@@ -18,6 +19,7 @@ Emacs =init.el=, but in an org file. Idea (and code) stolen from [[https://githu
 #+END_SRC
 
 ** TODO: All the things - unsorted and unorganised
+The good ol' "misc" pile. From when I first dumped my init.el into an org file.
 #+BEGIN_SRC emacs-lisp
   (require 're-builder)
   (setq reb-re-syntax 'string)
