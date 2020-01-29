@@ -276,6 +276,18 @@ This turns on the clock globally.
    '(auto-dim-other-buffers-face ((t (:background "#1a1b1e")))))
 #+END_SRC
 
+** Multiple cursors
+Add multiple cursors
+#+BEGIN_SRC emacs-lisp
+  (use-package multiple-cursors
+     :ensure t
+     :init
+     (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+     (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+     (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+     (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+#+END_SRC
 * Programming
 ** flycheck
 #+BEGIN_SRC emacs-lisp
