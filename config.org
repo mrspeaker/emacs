@@ -374,6 +374,7 @@ Add multiple cursors
                 (company-mode)
                 (flycheck-mode)
                 (turn-on-purescript-indentation)
+                (setq psc-ide-use-npm-bin t)
                 (add-to-list 'write-file-functions 'delete-trailing-whitespace))
               )
   )
@@ -430,6 +431,14 @@ Settings for dired
   ;; Reuse same dired buffer, to prevent numerous buffers while navigating in dired
   (put 'dired-find-alternate-file 'disabled nil)
 
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package dired-subtree
+    :config
+    (bind-keys :map dired-mode-map
+               ("i" . dired-subtree-insert)
+               (";" . dired-subtree-remove)))
 #+END_SRC
 
 * Org mode
