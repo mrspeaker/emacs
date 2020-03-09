@@ -447,9 +447,10 @@ Settings for Org mode
 ** Basic setup
 *** Misc customisations
 #+BEGIN_SRC emacs-lisp
- (setq org-agenda-files '("~/work.org"))
- (setq org-startup-indented t)
- (setq org-startup-with-inline-images t)
+  (setq org-agenda-files (list "~/notes/work/work.org"
+                               "~/notes/scheg.org"))
+  (setq org-startup-indented t)
+  (setq org-startup-with-inline-images t)
 #+END_SRC
 
 *** Don't smash frames
@@ -465,15 +466,16 @@ Settings for Org mode
 
 *** Babel exec code
 #+BEGIN_SRC emacs-lisp
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '(
-   (js . t)
-   ))
-(add-to-list 'org-babel-tangle-lang-exts '("js" . "js"))
-(setq org-src-fontify-natively t) ; syntax highlight
-(setq org-confirm-babel-evaluate nil) ; don't ask to exec
-(setq org-src-tab-acts-natively t) ; tab in code blocks
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (js . t)
+     (sparql . t)
+     ))
+  (add-to-list 'org-babel-tangle-lang-exts '("js" . "js"))
+  (setq org-src-fontify-natively t) ; syntax highlight
+  (setq org-confirm-babel-evaluate nil) ; don't ask to exec
+  (setq org-src-tab-acts-natively t) ; tab in code blocks
 
 #+END_SRC
 
