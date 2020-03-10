@@ -479,6 +479,11 @@ Settings for Org mode
 
 #+END_SRC
 
+*** Bullets
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-mode-hook (lambda ()
+                            (org-bullets-mode 1)))
+#+END_SRC
 ** Org-capture
 *** Capture templates
 #+BEGIN_SRC emacs-lisp
@@ -515,7 +520,8 @@ C-c C-e h o : export to html & open
 #_+HTML_HEAD: <style>body { max-width: 90%; margin: 0 auto }</style>
 
 ** Rec mode
-#+BEGIN_SRC
+What is Rec mode?
+#+BEGIN_SRC emacs-lisp
 (require 'rec-mode)
  (add-to-list 'auto-mode-alist '("\\.rec\\'" . rec-mode))
 #+END_SRC
