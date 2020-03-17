@@ -577,7 +577,7 @@ But don't bug me about saving files
     "Fetch current BTC price"
     (interactive)
     (shell-command
-     "curl https://api-pub.bitfinex.com/v2/ticker/tBTCUSD"
+     "curl https://api-pub.bitfinex.com/v2/ticker/tBTCUSD | jq .[0]"
      ))
 #+END_SRC
 ** Get my IP
@@ -585,5 +585,5 @@ But don't bug me about saving files
   (defun my-ip ()
     "SHow my ip"
     (interactive)
-    (shell-command "ifconfig | grep inet"))
+    (shell-command "ifconfig | grep inet | grep -v inet6 | awk '{ print $2 }'"))
 #+END_SRC
