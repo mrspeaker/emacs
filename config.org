@@ -471,11 +471,14 @@ Settings for Org mode
    '(
      (js . t)
      (sparql . t)
+     (emacs-lisp . t)
+     (http . t)
      ))
   (add-to-list 'org-babel-tangle-lang-exts '("js" . "js"))
   (setq org-src-fontify-natively t) ; syntax highlight
   (setq org-confirm-babel-evaluate nil) ; don't ask to exec
   (setq org-src-tab-acts-natively t) ; tab in code blocks
+  (use-package ob-http :ensure t)
 
 #+END_SRC
 
