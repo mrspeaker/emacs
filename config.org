@@ -135,6 +135,9 @@ Turn on emoji (TODO: should be "only when Mac, do this..")
 (set-fontset-font
      t 'symbol
      (font-spec :family "Apple Color Emoji") nil 'prepend)
+
+;(use-package company-emoji)
+
 #+END_SRC
 
 *** Misc (TODO: sort)
@@ -333,7 +336,7 @@ Add multiple cursors
                               (linum-mode)
                               (toggle-truncate-lines nil)
                               ;; (subword-mode 1) - testing no subword.
-                              (set-face-foreground 'linum "#454545")))
+                              (set-face-foreground 'linum "#555")))
 #+END_SRC
 
 ** Web & JS Mode
