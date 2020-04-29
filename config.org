@@ -295,7 +295,7 @@ This turns on the clock globally.
      :init
      (auto-dim-other-buffers-mode t))
   (custom-set-faces
-   '(auto-dim-other-buffers-face ((t (:background "#1a1b1e")))))
+   '(auto-dim-other-buffers-face ((t (:background "#17181a")))))
 #+END_SRC
 
 ** Multiple cursors
@@ -333,7 +333,7 @@ Add multiple cursors
                               (linum-mode)
                               (toggle-truncate-lines nil)
                               ;; (subword-mode 1) - testing no subword.
-                              (set-face-foreground 'linum "#333")))
+                              (set-face-foreground 'linum "#454545")))
 #+END_SRC
 
 ** Web & JS Mode
