@@ -137,7 +137,15 @@ Turn on emoji (TODO: should be "only when Mac, do this..")
      (font-spec :family "Apple Color Emoji") nil 'prepend)
 
 ;(use-package company-emoji)
+#+END_SRC
 
+Scale all buffer fonts - default bound to C-M-=/-
+#+BEGIN_SRC emacs-lisp
+  (use-package default-text-scale
+    :ensure t
+    :init
+    (add-hook 'after-init-hook (lambda ()
+                                 (default-text-scale-mode))))
 #+END_SRC
 
 *** Misc (TODO: sort)
@@ -373,6 +381,7 @@ Add multiple cursors
 
   (use-package tide
     :ensure t
+    :defer 5
     :init
     ;; aligns annotation to the right hand side
     (setq company-tooltip-align-annotations t)
@@ -394,7 +403,9 @@ Add multiple cursors
 Show hex colours (eg #c0ffee) with coloured background
 #+BEGIN_SRC elisp
   (use-package rainbow-mode
-    :ensure t)
+    :ensure t
+    :init
+    (add-hook 'prog-mode-hook 'rainbow-mode)
 #+END_SRC
 
 ** Purescript
