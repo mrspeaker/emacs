@@ -13,8 +13,8 @@
 
 (package-initialize)
 
-; TODO test it does anything good.
-(when (memq window-system '(mac ns x))
+; TODO test it does anything good.: no, "definition is void" on linux
+(when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
 ; TODO: needed?
