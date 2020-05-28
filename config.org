@@ -44,8 +44,14 @@ The good ol' "misc" pile. From when I first dumped my init.el into an org file.
   ;; Ido
   (setq ido-everywhere t)
   (ido-mode 1)
-  (setq ido-create-new-buffer 'always)
   (setq ido-use-filename-at-point 'guess)
+  (setq ido-file-extensions-order '(".org" ".purs" ".ts"))
+  ;; ido-ignore-directories	Takes a list of directories to ignore in C-x d and C-x C-f
+  (setq ido-create-new-buffer 'always)
+  ;; create-new-buffer 'alwasy doesn't work (still confirms)... this is workaround:
+  (defadvice ido-switch-buffer (around no-confirmation activate)
+    (let ((confirm-nonexistent-file-or-buffer nil))
+      ad-do-it))
 
   (use-package flx-ido
     :ensure t
@@ -70,21 +76,21 @@ The good ol' "misc" pile. From when I first dumped my init.el into an org file.
     :init
     (setq wgrep-auto-save-buffer t))
 
+  (use-package expand-region
+    :ensure t
+    :bind ("C-'" . er/expand-region))
+
   ; todo: from custom.el
-  ; default-text-scale, wgrep, browse-kill-ring, ob-http
+  ; default-text-scale, browse-kill-ring, ob-http
   ; org-bullets, ...
   ; NOTE: i manually removed: list-packages, D, X to kill
+
   ;; Hooks
   (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
   ;; Truncate long lines in grep
   (add-hook 'grep-mode-hook (lambda () (setq truncate-lines t)))
 
-
-  (use-package expand-region
-    :ensure t
-    :bind ("C-'" . er/expand-region))
-  ;; This was the old keybind: (global-set-key (kbd "C-'") 'er/expand-region)
   ;; Todo: this makes the command "ignore", but doens't run expand region in orgfile
   (global-set-key [remap org-cycle-agenda-files] 'ignore) ; tmp - same keybind as expand rgion above
 
@@ -343,7 +349,7 @@ Add multiple cursors
   (add-hook 'prog-mode-hook (lambda ()
                               (linum-mode)
                               (toggle-truncate-lines nil)
-                              ;; (subword-mode 1) - testing no subword.
+                              (subword-mode 1)
                               (set-face-foreground 'linum "#555")))
 #+END_SRC
 
@@ -561,6 +567,9 @@ Fancy looking bullets in org lists
            "* %? %u")
           ("i" "random idea" entry
            (file "~/notes/ideas.org")
+           "* %? %u")
+          ("o" "words" entry
+           (file "~/notes/words.org")
            "* %? %u")))
 #+END_SRC
 
