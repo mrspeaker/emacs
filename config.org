@@ -12,6 +12,7 @@ Emacs =init.el=, but in an org file. Idea (and code) stolen from [[https://githu
 
 ** Set load paths & init
 Stuff to do a the start. Load paths, general initialization settings
+
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
   (add-to-list 'load-path "~/.emacs.d/themes/")
@@ -23,6 +24,7 @@ Stuff to do a the start. Load paths, general initialization settings
 
 ** TODO: All the things - unsorted and unorganised
 The good ol' "misc" pile. From when I first dumped my init.el into an org file.
+
 #+BEGIN_SRC emacs-lisp
   (require 're-builder)
   (setq reb-re-syntax 'string)
@@ -265,7 +267,7 @@ This turns on the clock globally.
 ;; TODO: add  '(split-height-threshold 160)
 
 ** Spelling
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
 ; on mac, needed `brew install aspell
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "english")
@@ -299,9 +301,10 @@ This turns on the clock globally.
 (add-hook 'calendar-load-hook
               (lambda ()
                 (calendar-set-date-style 'european)))
-#+END
+#+END_SRC
 * Enhancements
 ** All the icons
+Add icons to everything
 #+BEGIN_SRC emacs-lisp
 ;; Note: need to run M-x all-the-icons-install-fonts after use-pacakge...
 ;; is there a way to do this automagically?
@@ -360,7 +363,7 @@ Add multiple cursors
   (add-hook 'org-src-mode-hook 'disable-fylcheck-in-org-src-block)
 #+END_SRC
 ** lisp
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
 #+END_SRC
 ** Line numbering & Truncate long lines
@@ -373,6 +376,7 @@ Add multiple cursors
 #+END_SRC
 
 ** Web & JS Mode
+
 *** JS2Mode
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
@@ -381,6 +385,10 @@ Add multiple cursors
 #+END_SRC
 
 *** Web mode
+
+***
+
+***
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode
     :ensure t
@@ -426,7 +434,7 @@ Add multiple cursors
 *** Other web-ish things
 **** Rainbows mode
 Show hex colours (eg #c0ffee) with coloured background
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
   (use-package rainbow-mode
     :ensure t
     :init
@@ -435,15 +443,15 @@ Show hex colours (eg #c0ffee) with coloured background
 
 *** nodejs-repl
 Run repl
-#+BEGIN_SRC elisp
-(add-hook 'js-mode-hook
-          (lambda ()
-            (define-key js-mode-map (kbd "C-x C-e") 'nodejs-repl-send-last-expression)
-            (define-key js-mode-map (kbd "C-c C-j") 'nodejs-repl-send-line)
-            (define-key js-mode-map (kbd "C-c C-r") 'nodejs-repl-send-region)
-            (define-key js-mode-map (kbd "C-c C-l") 'nodejs-repl-load-file)
-            (define-key js-mode-map (kbd "C-c C-z") 'nodejs-repl-switch-to-repl)))
-#+END
+#+BEGIN_SRC emacs-lisp
+  ;; (add-hook 'js-mode-hook
+  ;;           (lambda ()
+  ;;             (define-key js-mode-map (kbd "C-x C-e") 'nodejs-repl-send-last-expression)
+  ;;             (define-key js-mode-map (kbd "C-c C-j") 'nodejs-repl-send-line)
+  ;;             (define-key js-mode-map (kbd "C-c C-r") 'nodejs-repl-send-region)
+  ;;             (define-key js-mode-map (kbd "C-c C-l") 'nodejs-repl-load-file)
+  ;;             (define-key js-mode-map (kbd "C-c C-z") 'nodejs-repl-switch-to-repl)))
+#+END_SRC
 
 ** PureScript
 #+BEGIN_SRC emacs-lisp
@@ -453,14 +461,13 @@ Run repl
     (add-to-list 'auto-mode-alist '("\\.purs\\'" . purescript-mode))
     (add-hook 'purescript-mode-hook
               (lambda ()
+                (message "ps hook running")
                 (psc-ide-mode)
+                (turn-on-purescript-indentation)
                 (company-mode)
                 (flycheck-mode)
-                (turn-on-purescript-indentation)
                 (setq psc-ide-use-npm-bin t)
-                (add-to-list 'write-file-functions 'delete-trailing-whitespace))
-              )
-  )
+                (add-to-list 'write-file-functions 'delete-trailing-whitespace))))
 #+END_SRC
 
 ** Prettier/EsLint/Tern/Company
@@ -497,7 +504,7 @@ Run repl
 (use-package php-mode :ensure t)
 (use-package lua-mode :ensure t)
 
-(require 'pico8-mode)
+;;(require 'pico8-mode)
 #+END_SRC
 
 * Dired
@@ -613,7 +620,8 @@ C-c C-e h o : export to html & open
 #_+HTML_HEAD: <style>body { max-width: 90%; margin: 0 auto }</style>
 
 ** Blogging
-#+BEGIN_SRC elisp
+blogging
+#+BEGIN_SRC emacs-lisp
       (use-package org2blog
                    :ensure t
                    :init
@@ -626,7 +634,7 @@ C-c C-e h o : export to html & open
                                     :password ,password)))
                      (setq org2blog/wp-blog-alist config))
                    (defun o2bhook () (local-set-key (kbd "<f12>") #'org2blog-user-interface))
-                   (add-hook 'org2blog/wp-mode-hook #'o2bhook)
+                   (add-hook 'org2blog/wp-mode-hook #'o2bhook))
   ;  (local-unset-key (kbd "f"))
 
 #+END_SRC
