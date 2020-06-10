@@ -291,6 +291,12 @@ This turns on the clock globally.
 
 #+END_SRC
 
+*** Non-us dates for cal
+#+BEGIN_SRC emacs-lisp
+(add-hook 'calendar-load-hook
+              (lambda ()
+                (calendar-set-date-style 'european)))
+#+END
 * Enhancements
 ** All the icons
 #+BEGIN_SRC emacs-lisp
