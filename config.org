@@ -348,7 +348,7 @@ Add multiple cursors
 #+BEGIN_SRC emacs-lisp
   (add-hook 'prog-mode-hook (lambda ()
                               (linum-mode)
-                              (toggle-truncate-lines nil)
+                              (toggle-truncate-lines t)
                               (subword-mode 1)
                               (set-face-foreground 'linum "#555")))
 #+END_SRC
