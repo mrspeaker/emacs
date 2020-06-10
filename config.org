@@ -1,3 +1,6 @@
+#+BLOG: mrspeaker.net
+#+POSTID: 4627
+#+DATE: [2020-05-29 Fri 10:58]
 #+TITLE: Mr Speaker's Emacs
 #+CREATOR: Mr Speaker
 #+LANGUAGE: en
