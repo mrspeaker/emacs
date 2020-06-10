@@ -258,6 +258,13 @@ This turns on the clock globally.
 ** Layout & Splits
 ;; TODO: add  '(split-height-threshold 160)
 
+** Spelling
+#+BEGIN_SRC elisp
+; on mac, needed `brew install aspell
+(setq ispell-program-name "aspell")
+(setq ispell-dictionary "english")
+#+END_SRC
+
 ** Customizations
 #+BEGIN_SRC emacs-lisp
   ;; Move lines up/down with M-p and M-n
