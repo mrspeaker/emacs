@@ -430,8 +430,9 @@ Show hex colours (eg #c0ffee) with coloured background
   (use-package rainbow-mode
     :ensure t
     :init
-    (add-hook 'prog-mode-hook 'rainbow-mode)
+    (add-hook 'prog-mode-hook 'rainbow-mode))
 #+END_SRC
+
 *** nodejs-repl
 Run repl
 #+BEGIN_SRC elisp
@@ -443,7 +444,8 @@ Run repl
             (define-key js-mode-map (kbd "C-c C-l") 'nodejs-repl-load-file)
             (define-key js-mode-map (kbd "C-c C-z") 'nodejs-repl-switch-to-repl)))
 #+END
-** Purescript
+
+** PureScript
 #+BEGIN_SRC emacs-lisp
   (use-package psc-ide
     :ensure t
