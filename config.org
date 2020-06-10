@@ -581,6 +581,24 @@ C-c C-e h o : export to html & open
 (remove _'s below)
 #_+HTML_HEAD: <style>body { max-width: 90%; margin: 0 auto }</style>
 
+** Blogging
+#+BEGIN_SRC elisp
+      (use-package org2blog
+                   :ensure t
+                   :init
+                   (let* ((credentials (auth-source-user-and-password "blog.mrspeaker.net"))
+                          (username (nth 0 credentials))
+                          (password (nth 1 credentials))
+                          (config `("mrspeaker.net"
+                                    :url "https://www.mrspeaker.net/xmlrpc.php"
+                                    :username ,username
+                                    :password ,password)))
+                     (setq org2blog/wp-blog-alist config))
+                   (defun o2bhook () (local-set-key (kbd "<f12>") #'org2blog-user-interface))
+                   (add-hook 'org2blog/wp-mode-hook #'o2bhook)
+  ;  (local-unset-key (kbd "f"))
+
+#+END_SRC
 ** Rec mode
 What is Rec mode?
 #+BEGIN_SRC emacs-lisp
