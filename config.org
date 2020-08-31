@@ -261,6 +261,9 @@ This turns on the clock globally.
 
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier nil)
+
+  (windmove-default-keybindings) ; move windows with shift-arrows ;; todo: fix for orgmode
+
 #+END_SRC
 
 ** Layout & Splits
@@ -302,6 +305,12 @@ This turns on the clock globally.
               (lambda ()
                 (calendar-set-date-style 'european)))
 #+END_SRC
+
+*** Diary
+#+BEGIN_SRC emacs-lisp
+(add-hook 'list-diary-entries-hook 'sort-diary-entries t)
+#+END_SRC
+
 * Enhancements
 ** All the icons
 Add icons to everything
@@ -453,6 +462,11 @@ Run repl
   ;;             (define-key js-mode-map (kbd "C-c C-z") 'nodejs-repl-switch-to-repl)))
 #+END_SRC
 
+** Rust
+#+BEGIN_SRC emacs-lisp
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+#+END_SRC
 ** PureScript
 #+BEGIN_SRC emacs-lisp
   (use-package psc-ide
@@ -466,7 +480,7 @@ Run repl
                 (turn-on-purescript-indentation)
                 (company-mode)
                 (flycheck-mode)
-                (setq psc-ide-use-npm-bin t)
+                (setq psc-ide-use-npm-bin nil)
                 (add-to-list 'write-file-functions 'delete-trailing-whitespace))))
 #+END_SRC
 
@@ -705,10 +719,22 @@ But don't bug me about saving files
 (fset 'ps-import-all
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\363" 0 "%d")) arg)))
 #+END_SRC
+** WebCols
+#+BEGIN_SRC emacs-lisp
+  (defun web-color ()
+    (interactive)
+    (let ((cols '("AliceBlue" "AntiqueWhite" "Aqua" "Aquamarine" "Azure" "Beige" "Bisque" "Black" "BlanchedAlmond" "Blue" "BlueViolet" "Brown" "BurlyWood" "CadetBlue" "Chartreuse" "Chocolate" "Coral" "CornflowerBlue" "Cornsilk" "Crimson" "Cyan" "DarkBlue" "DarkCyan" "DarkGoldenRod" "DarkGray" "DarkGreen" "DarkKhaki" "DarkMagenta" "DarkOliveGreen" "Darkorange" "DarkOrchid" "DarkRed" "DarkSalmon" "DarkSeaGreen" "DarkSlateBlue" "DarkSlateGray" "DarkTurquoise" "DarkViolet" "DeepPink" "DeepSkyBlue" "DimGray" "DodgerBlue" "FireBrick" "FloralWhite" "ForestGreen" "Fuchsia" "Gainsboro" "GhostWhite" "Gold" "GoldenRod" "Gray" "Green" "GreenYellow" "HoneyDew" "HotPink" "IndianRed" "Indigo" "Ivory" "Khaki" "Lavender" "LavenderBlush" "LawnGreen" "LemonChiffon" "LightBlue" "LightCoral" "LightCyan" "LightGoldenRodYellow" "LightGray" "LightGreen" "LightPink" "LightSalmon" "LightSeaGreen" "LightSkyBlue" "LightSlateGray" "LightSteelBlue" "LightYellow" "Lime" "LimeGreen" "Linen" "Magenta" "Maroon" "MediumAquaMarine" "MediumBlue" "MediumOrchid" "MediumPurple" "MediumSeaGreen" "MediumSlateBlue" "MediumSpringGreen" "MediumTurquoise" "MediumVioletRed" "MidnightBlue" "MintCream" "MistyRose" "Moccasin" "NavajoWhite" "Navy" "OldLace" "Olive" "OliveDrab" "Orange" "OrangeRed" "Orchid" "PaleGoldenRod" "PaleGreen" "PaleTurquoise" "PaleVioletRed" "PapayaWhip" "PeachPuff" "Peru" "Pink" "Plum" "PowderBlue" "Purple" "Red" "RosyBrown" "RoyalBlue" "SaddleBrown" "Salmon" "SandyBrown" "SeaGreen" "SeaShell" "Sienna" "Silver" "SkyBlue" "SlateBlue" "SlateGray" "Snow" "SpringGreen" "SteelBlue" "Tan" "Teal" "Thistle" "Tomato" "Turquoise" "Violet" "Wheat" "White" "WhiteSmoke" "Yellow" "YellowGreen")))
+      (insert (nth (random (length cols)) cols))))
+#+END_SRC
 ** Get my IP
 #+BEGIN_SRC emacs-lisp
   (defun my-ip ()
     "SHow my ip"
     (interactive)
     (shell-command "ifconfig | grep inet | grep -v inet6 | awk '{ print $2 }'"))
+#+END_SRC
+** Kick Assembler
+#+BEGIN_SRC emacs-lisp
+(require 'kickasm-mode)
+; (add-to-list 'auto-mode-list '("\\.asm" . kickasm-mode))
 #+END_SRC
