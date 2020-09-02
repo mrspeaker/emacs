@@ -138,6 +138,16 @@ Choose to set or hide by changing =-1= to =1=.
   ;;  (load-theme 'gruvbox-light-hard))
 #+END_SRC
 
+*** Desktop
+#+BEGIN_SRC emacs-lisp
+
+  (desktop-save-mode 1) ; Save layout/open files
+  ;; note: this didn't save layout until I customised: '(desktop-save (quote ask-if-new))
+
+  (desktop-restore-eager 10) ; Only eager-load first 10 docs
+
+#+END_SRC
+
 *** Fonts
 Set the default line height
 #+BEGIN_SRC emacs-lisp
@@ -164,10 +174,6 @@ Scale all buffer fonts - default bound to C-M-=/-
 
 *** Misc (TODO: sort)
 #+BEGIN_SRC emacs-lisp
-
-  (desktop-save-mode 1) ; Save layout/open files
-  ;; note: this didn't save layout until I customised: '(desktop-save (quote ask-if-new))
-
   (delete-selection-mode 1) ; Overwrite current text selection
 
   ;; Repeatedly use C-spc after C-u spc to cycle through mark ring
