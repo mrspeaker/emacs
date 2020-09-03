@@ -143,8 +143,8 @@ Choose to set or hide by changing =-1= to =1=.
 
   (desktop-save-mode 1) ; Save layout/open files
   ;; note: this didn't save layout until I customised: '(desktop-save (quote ask-if-new))
-
-  (desktop-restore-eager 10) ; Only eager-load first 10 docs
+  (setq desktop-save 'ask-if-new)
+  (setq desktop-restore-eager 5) ; Only eager-load first 10 docs
 
 #+END_SRC
 
@@ -344,12 +344,13 @@ Add icons to everything
 
 ** Auto dim other buffers
 #+BEGIN_SRC emacs-lisp
-  (use-package auto-dim-other-buffers
-     :ensure t
-     :init
-     (auto-dim-other-buffers-mode t))
-  (custom-set-faces
-   '(auto-dim-other-buffers-face ((t (:background "#17181a")))))
+; disable autodim
+  ;; (use-package auto-dim-other-buffers
+  ;;    :ensure t
+  ;;    :init
+  ;;    (auto-dim-other-buffers-mode t))
+  ;; (custom-set-faces
+  ;;  '(auto-dim-other-buffers-face ((t (:background "#17181a")))))
 #+END_SRC
 
 ** Multiple cursors
