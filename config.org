@@ -144,7 +144,7 @@ Choose to set or hide by changing =-1= to =1=.
   (desktop-save-mode 1) ; Save layout/open files
   ;; note: this didn't save layout until I customised: '(desktop-save (quote ask-if-new))
   (setq desktop-save 'ask-if-new)
-  (setq desktop-restore-eager 5) ; Only eager-load first 10 docs
+  ;;(setq desktop-restore-eager 5) ; Only eager-load first x docs
 
 #+END_SRC
 

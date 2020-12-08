@@ -38,3 +38,5 @@
   (load custom-file :noerror))
 
 ;;; init.el ends here
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
