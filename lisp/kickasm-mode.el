@@ -222,7 +222,7 @@ MODE is the name of the major mode."
 
 (defun kickasm-compilation-setup-function ()
   "Compilation setup function."
-  (setq-local compilation-error-regexp-alist kickasm-error-regexp-alist)
+  (setq-local compilation-error-regexp-alist-alist kickasm-error-regexp-alist)
   (setq-local compilation-scroll-output 'first-error)
   (setq-local compilation-auto-jump-to-first-error t))
 
