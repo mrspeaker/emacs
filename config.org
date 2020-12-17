@@ -567,18 +567,17 @@ Run repl
 Settings for dired
 
 #+BEGIN_SRC emacs-lisp
-  ;; Dired
   (setq dired-dwim-target t)
   (add-hook 'dired-mode-hook
             (lambda()
-              (dired-hide-details-mode))) ; Hide dired detailsn
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+              (dired-hide-details-mode))) ; Hide dired details
   ;; (delete-by-moving-to-trash t) ; "symbol's function definition is void"
   ;; Reuse same dired buffer, to prevent numerous buffers while navigating in dired
   (put 'dired-find-alternate-file 'disabled nil)
 
 #+END_SRC
 
+Allow opening/closing subtrees from within dired
 #+BEGIN_SRC emacs-lisp
   (use-package dired-subtree
     :config
