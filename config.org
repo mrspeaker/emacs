@@ -384,9 +384,39 @@ Add multiple cursors
   (add-hook 'org-src-mode-hook 'disable-fylcheck-in-org-src-block)
 #+END_SRC
 ** lisp
+
+Set the lisp inferior mode to sbcl. TODO: need to make the paths local to machine.
 #+BEGIN_SRC emacs-lisp
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
+  (add-to-list 'exec-path "/usr/local/bin")
+  (setq inferior-lisp-program "sbcl")
 #+END_SRC
+
+*** Rainbow delimiters & Paredit
+#+BEGIN_SRC emacs-lisp
+  (dolist (package '(slime paredit rainbow-delimiters))
+    (unless (package-installed-p package)
+      (package-install package)))
+
+  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
+  (add-hook 'ielm-mode-hook 'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook 'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+  (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
+  (defun override-slime-del-key ()
+    (define-key slime-repl-mode-map
+      (read-kbd-macro paredit-backward-delete-key) nil))
+
+;;; Rainbow delimiters
+  (add-hook 'slime-repl-mode-hook 'override-slime-del-key)
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
+
+#+END_SRC
+
 ** Line numbering & Truncate long lines
 #+BEGIN_SRC emacs-lisp
   (add-hook 'prog-mode-hook (lambda ()
