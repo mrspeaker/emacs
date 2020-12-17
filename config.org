@@ -50,7 +50,7 @@ The good ol' "misc" pile. From when I first dumped my init.el into an org file.
   (setq ido-everywhere t)
   (ido-mode 1)
   (setq ido-use-filename-at-point 'guess)
-  (setq ido-file-extensions-order '(".org" ".purs" ".ts"))
+  (setq ido-file-extensions-order '(".org" ".purs" ".ts" ".tsx"))
   ;; ido-ignore-directories	Takes a list of directories to ignore in C-x d and C-x C-f
   (setq ido-create-new-buffer 'always)
   ;; create-new-buffer 'alwasy doesn't work (still confirms)... this is workaround:
